@@ -1,0 +1,50 @@
+# All access pages
+/
+/programs/
+/programs/fot/
+/programs/fot/rss
+/programs/fot/2013
+/programs/fot/201...
+/programs/fot/2016
+/programs/...
+/about/mission
+/about/staff
+/sponsors
+/sponsors/2213          # client id
+/sponsors/...
+/events/
+/events/womens_conf_2016
+/events/risen_movie
+/events/...
+/contact/
+
+# Restricted access pages
+# Site administration
+/admin
+/admin/...
+
+# Pages for clients
+/client/2213
+/client/...
+
+# Pages for staff
+/client/                # list of clients, link to client pages (above)
+/production
+/production/2213
+/production/2213/6741   # order #
+/production/2213/...
+/production/...
+
+
+# APPS
+
+programs
+    Hold/show information about kwky programs
+    Split soundcloud rss feed into individual program rss feeds
+events
+    Hold/show information about kwky events
+clients
+    Hold/show client details to clients and staff
+    Hold/show client advertisments and contact details to users
+production
+    Manage production workflow
