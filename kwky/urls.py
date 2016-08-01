@@ -19,7 +19,7 @@ from django.contrib import admin
 import programs.views 
 
 urlpatterns = [
-    url(r'^programs/', include('programs.program_urls.py')),
-    url(r'^staff/', include('programs.staff_urls.py')),
+    url(r'^programs/', include('programs.program_urls')),
+    url(r'^staff/', include('programs.staff_urls')),
     url(r'^admin/', admin.site.urls),
 ]
