@@ -1,8 +1,12 @@
-from django.http import HttpResponse
+from django.shortcuts import render
+
+from .models import StaffProfile, Program
 
 
 def staff_index(request):
-    return HttpResponse('Staff Index Page')
+    staff_members = StaffProfile.objects.order_by('-org_rank')
+    context = {'staff_members': staff_members}
+    return render(request, 'programs/staff_index.html', context)
 
 def staff_detail(request, name):
     return HttpResponse('Staff Detail Page: {}'.format(name))

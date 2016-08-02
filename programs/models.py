@@ -22,6 +22,11 @@ class StaffProfile(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
     job_title = models.CharField(max_length=64)
+    org_rank = models.PositiveIntegerField('Orginizational Weight',
+        help_text='Staff members who are more important (eg General ' + \
+                  'Manager should recieve lower values, while those ' + \
+                  'in lower positions (eg Office Assistant) should ' + \
+                  'recieve a higher value here.')
     picture = models.ImageField(upload_to='staff/')
     email = models.EmailField('Contact Email')
     phone = models.CharField('Phone Number',max_length=14)
