@@ -1,4 +1,6 @@
-from django.shortcuts import render
+import re
+
+from django.shortcuts import render, get_object_or_404
 
 from .models import StaffProfile, Program
 
@@ -8,8 +10,10 @@ def staff_index(request):
     context = {'staff_members': staff_members}
     return render(request, 'programs/staff_index.html', context)
 
-def staff_detail(request, name):
-    return HttpResponse('Staff Detail Page: {}'.format(name))
+def staff_detail(request, fn, ln):
+    member = get_object_or_404(StaffProfile, first_name=fn, last_name=ln)
+    context = {'member': member}
+    return render(request, 'programs/staff_detail.html', context)
 
 
 def program_index(request):
