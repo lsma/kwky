@@ -15,14 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views import static.serve
+from django.views.static import serve
 
 import programs.views 
 
 urlpatterns = [
     url(r'^programs/', include('programs.program_urls')),
     url(r'^staff/', include('programs.staff_urls')),
-    url(r'^assets/uploads/(?P<path>.*)$', static.serve),
-    url(r'^assets/static/(?P<path>.*)$', static.serve),
+    url(r'^assets/uploads/(?P<path>.*)$', serve),
+    url(r'^assets/static/(?P<path>.*)$', serve),
     url(r'^admin/', admin.site.urls),
 ]
