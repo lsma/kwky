@@ -1,9 +1,16 @@
+{% extends "site/base.html" %}
+
+{% block title %}Staff Index{% endblock %}
+
+{% block content %}
 {% if staff_members %}
     <ul>
     {% for member in staff_members %}
-        <li><a href="/staff/{{ member.last_name }}_{{ member.first_name }}/">{{ member.last_name }} {{ member.first_name }}</a></li>
+        <li><a href="/staff/{{ member.last_name|lower }}_{{ member.first_name|lower }}/">
+        {{member.last_name }} {{ member.first_name }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
     <p>Hmm...<br>There doesn't seem to be anyone here.  That's odd.</p>
 {% endif %}
+{% endblock %}

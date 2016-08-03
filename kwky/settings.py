@@ -121,9 +121,9 @@ USE_TZ = True
 
 STATIC_URL = '/assets/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR, 'assets/static')
 ]
 
 # Upload stuff
-MEDIA_ROOT = os.path.join(BASE_DIR, 'uploads')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/uploads')
 MEDIA_URL = '/assets/uploads/'

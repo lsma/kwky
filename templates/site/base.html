@@ -1,0 +1,94 @@
+{% load static from staticfiles %}
+<!doctype html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>{% block title %}Iowa Catholic Radio{% endblock %}</title>
+        <meta name="description" content="Homepage">
+        <meta name="author" content="lsma">
+
+        <link rel="stylesheet" href="{% static "site/theme.css" %}">
+
+        <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+    </head>
+
+    <body>
+        <script src="js/scripts.js"></script>
+        <div id="page-back">
+            <div id="page-content-box">
+                <div id="page-header">
+                    <a class="icr-banner" href="#"></a>
+                    <div id="page-header-sidebox">
+                        <p class="phone">
+                             <span class="small">515</span> 223 1150
+                        </p>
+                        <div>
+                            <a class="button" id="btn-listen"></a>
+                            <a class="button" id="btn-donate"></a>
+                        </div>
+                    </div>
+                </div>
+                <div id="menubar-box">
+                    <ul id="menubar">
+                        <li class="menuitem">
+                             <a href="#">Home</a>
+                        </li>
+                        <li class="menuitem">
+                             <a href="#">Programs</a>
+                            <ul class="submenu">
+                                <li class="submenuitem">
+                                     <a href="#">Faith on Trial</a>
+                                </li>
+                                <li class="submenuitem">
+                                     <a href="#">Catholic Women Now</a>
+                                </li>
+                                <li class="submenuitem">
+                                     <a href="#">John Leonetti in the Morning</a>
+                                </li>
+                                <li class="submenuitem">
+                                     <a href="#">Complete Schedule</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="menuitem">
+                             <a href="#">Events</a>
+                        </li>
+                        <li class="menuitem">
+                             <a href="#">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <div id="content">
+                    {% block content %}{% endblock %}
+                </div>
+            </div>
+            <div id="page-footer">
+                 <h3>Iowa Catholic Radio</h3>
+                <div id="footer-cols">
+                    <div class="footer-col">
+                        <ul>
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Programs</a></li>
+                            <li><a href="#">Events</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <p>Contact:</p>
+                        <p class="phone">
+                            <span class="small">515</span> 223 1150
+                        </p>
+                    </div>
+                </div>
+                <a href="http://masstimes.org/map?lat=41.6005448&lng=-93.60910639999997&SearchQueryTerm=Des%20Moines,%20IA,%20USA">Click here for Mass</a>
+                <p>Iowa Catholic Radio © ALL RIGHTS RESERVED. </p>
+            </div>
+        </div>
+    </body>
+
+</html>
