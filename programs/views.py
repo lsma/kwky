@@ -10,7 +10,7 @@ def staff_index(request):
     context = {'staff_members': staff_members}
     return render(request, 'programs/staff_index.html', context)
 
-def staff_detail(request, fn, ln):
+def staff_detail(request, ln, fn):
     member = get_object_or_404(StaffProfile, first_name=fn, last_name=ln)
     context = {'member': member}
     return render(request, 'programs/staff_detail.html', context)
