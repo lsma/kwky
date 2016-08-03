@@ -1,10 +1,11 @@
 {% extends "site/base.html" %}
 
-{% block title %}Staff Detail{% endblock %}
+{% block title %}ICR - {{ member.first_name|capfirst }} {{ member.last_name|capfirst }}{% endblock %}
 
 {% block content %}
-<h1>{{ member.first_name }} {{ member.last_name }}</h1>
+<h1>{{ member.first_name|capfirst }} {{ member.last_name|capfirst }}</h1>
 <i>{{ member.job_title }}</i>
+<br>
 <img src="{{ member.picture.url }}" height="420">
 {% endblock %}
 

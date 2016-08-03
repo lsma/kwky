@@ -11,7 +11,9 @@ def staff_index(request):
     return render(request, 'programs/staff_index.html', context)
 
 def staff_detail(request, ln, fn):
-    member = get_object_or_404(StaffProfile, first_name=fn, last_name=ln)
+    member = get_object_or_404(StaffProfile,
+        first_name__iexact=fn,
+        last_name__iexact=ln)
     context = {'member': member}
     return render(request, 'programs/staff_detail.html', context)
 

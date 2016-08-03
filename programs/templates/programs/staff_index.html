@@ -7,7 +7,7 @@
     <ul>
     {% for member in staff_members %}
         <li><a href="/staff/{{ member.last_name|lower }}_{{ member.first_name|lower }}/">
-        {{member.last_name }} {{ member.first_name }}</a></li>
+        {{ member.first_name|capfirst }} {{ member.last_name|capfirst }}</a></li>
     {% endfor %}
     </ul>
 {% else %}
