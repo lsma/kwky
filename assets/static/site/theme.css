@@ -1,6 +1,9 @@
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto';
+
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
     color: #aaa;
+    box-sizing: border-box;
 }
 
 a {
@@ -9,6 +12,17 @@ a {
 img {
     max-width: 100%;
     height: auto;
+}
+h1, h2 {
+    margin: 10px 0px;
+}
+
+h3,h4,p {
+    margin: 5px 0px;
+}
+
+#content {
+    padding: 0px 25px 25px 25px;
 }
 
 #page-back {
@@ -213,6 +227,32 @@ img {
     padding-left: 5px;
 }
 
+
+/* Staff Index Page */
+.grid {
+    display: -webkit-flex;
+    display: flex;
+    flex-flow: row wrap;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+.grid-item {
+    position: relative;
+    width: 250px;   
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+}
+
+.fill-link span {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
 
 @media screen and (max-width: 1020px) {
     #page-content-box, #page-footer {
