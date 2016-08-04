@@ -1,3 +1,5 @@
+from datetime import datetime, date
+
 from django.db import models
 
 
@@ -15,9 +17,16 @@ class Program(models.Model):
                    (None, 'Day of Week'))
     title = models.CharField(max_length=128)
     abbr = models.SlugField('Program ID', max_length=3)
-    air_days = models.TextField(choices=DAY_CHOICES)
-    
+    air_days = models.CharField(max_length=1, choices=DAY_CHOICES)
+    picture = models.ImageField(upload_to='program/', null=True, blank=True)
+    description = models.TextField(null=True, blank=True)
 
+    def __str__(self):
+        return self.title
+
+    def get_url_comp(self):
+        return self.abbr.lower()
+    
 class StaffProfile(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
@@ -38,15 +47,34 @@ class StaffProfile(models.Model):
         on_delete=models.SET_NULL,
     )
 
+    def __str__(self):
+        return '{} {}'.format(self.first_name.capitalize(),
+                              self.last_name.capitalize(),)
+
+    def get_url_comp(self):
+        return '{}_{}'.format(self.first_name.lower(),
+                              self.last_name.lower(),)
+
 
 class Link(models.Model):
     display_text = models.CharField(max_length=128)
     href = models.URLField('Link URL')
     staff = models.ForeignKey(StaffProfile, on_delete=models.CASCADE)
 
+    def __str__(self):
+        return '[{}]({})'.format(self.display_text, self.href)
+
 class Showtime(models.Model):
     start_time = models.TimeField()
     duration = models.DurationField()
     program = models.ForeignKey(Program, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return '{}-{}:{}'.format(self.start_time,
+                                 self.get_end_time(),
+                                 self.duration)
+
+    def get_end_time(self):
+        return (datetime.combine(date.min, self.start_time) + self.duration).time()
     
 
