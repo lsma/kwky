@@ -50,10 +50,10 @@ class StaffProfile(models.Model):
     def __str__(self):
         return '{} {}'.format(self.first_name.capitalize(),
                               self.last_name.capitalize(),)
-
-    def get_url_comp(self):
-        return '{}_{}'.format(self.first_name.lower(),
-                              self.last_name.lower(),)
+    
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('staff_detail', args=[self.first_name,self.last_name])
 
 
 class Link(models.Model):
