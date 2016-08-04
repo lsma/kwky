@@ -24,8 +24,9 @@ class Program(models.Model):
     def __str__(self):
         return self.title
 
-    def get_url_comp(self):
-        return self.abbr.lower()
+    def get_absolute_url(self):
+        from django.core.urlresolvers import reverse
+        return reverse('program_detail', args=[self.abbr])
     
 class StaffProfile(models.Model):
     first_name = models.CharField(max_length=32)
