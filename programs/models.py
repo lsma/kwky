@@ -54,7 +54,8 @@ class StaffProfile(models.Model):
     
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
-        return reverse('staff_detail', args=[self.last_name,self.first_name])
+        return reverse('staff_detail', args=[self.last_name.lower(),
+                                             self.first_name.lower()])
 
 
 class Link(models.Model):
