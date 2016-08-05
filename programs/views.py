@@ -6,7 +6,7 @@ from .models import StaffProfile, Program
 
 
 def staff_index(request):
-    staff_members = StaffProfile.objects.order_by('-org_rank')
+    staff_members = StaffProfile.objects.order_by('org_rank')
     context = {'staff_members': staff_members}
     return render(request, 'programs/staff_index.html', context)
 
