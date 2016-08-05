@@ -4,6 +4,7 @@ body {
     font-family: 'Roboto', sans-serif;
     color: #aaa;
     box-sizing: border-box;
+    margin: 0;
 }
 
 a {
@@ -14,11 +15,11 @@ img {
     height: auto;
 }
 h1, h2 {
-    margin: 10px 0px;
+    margin: 10px 0;
 }
 
 h3,h4,p {
-    margin: 5px 0px;
+    margin: 5px 0;
 }
 
 #content {
@@ -26,16 +27,23 @@ h3,h4,p {
 }
 
 #page-back {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    width: 100%;
-    height: 100%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: #eee;
     background-image: url('bg.jpg');
     background-repeat: repeat;
+}
+#page-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
 }
 #page-content-box {
     margin: auto;
@@ -57,20 +65,20 @@ h3,h4,p {
 #page-header .icr-banner {
     width: 50%;
     height: 160px;
-    margin: 0px;
+    margin: 0;
     margin-left: 20px;
 }
 #page-header-sidebox {
     color: inherit;
     float: right;
-    margin: 0px;
+    margin: 0;
     padding: 32px;
     text-align: right;
 }
 #page-header-sidebox p {
     color: inherit;
     margin-bottom: 5px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 .phone {
     color: inherit;
@@ -96,6 +104,11 @@ h3,h4,p {
     width: 120px;
     height: 60px;
 }
+#menubar-box {
+    position:relative;
+    z-index: 999;
+}
+
 #menubar {
     display: table;
     width: 100%;
@@ -112,8 +125,8 @@ h3,h4,p {
     text-transform:uppercase;
     text-shadow: 0 1px #cc9611;
     text-align: center;
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .menuitem {
@@ -153,9 +166,9 @@ h3,h4,p {
     background:-ms-linear-gradient(top, #ebbe16 0, #dd9210 100%);
     background:linear-gradient(to bottom, #ebbe16 0, #dd9210 100%);
     width: 277px;
-    max-height: 0px;
+    max-height: 0;
     overflow-y:hidden;
-    padding: 0px;
+    padding: 0;
     -webkit-transition: max-height 0s; /* Safari 3.1 to 6.0 */
     transition: max-height 0s;
 }
@@ -168,7 +181,7 @@ h3,h4,p {
 
 .submenuitem {
     display: block;
-    padding: 0px;
+    padding: 0;
 }
 .submenuitem>a {
     display: block;
@@ -199,7 +212,7 @@ h3,h4,p {
 }
 
 #page-footer * {
-    margin: 0px;
+    margin: 0;
 }
 #page-footer>*:first-child {
     padding-top: 15px;
@@ -264,14 +277,14 @@ h3,h4,p {
     #page-header .icr-banner {
         width: 100%;
         height: 100px;
-        margin: 0px;
+        margin: 0;
         margin-bottom: -5px;
     }
     
     #page-header-sidebox {
         float: none;
         text-align: center;
-        padding: 0px 5px 5px 5px;
+        padding: 0 5px 5px 5px;
     }
     
     
@@ -283,7 +296,7 @@ h3,h4,p {
     .footer-col {
         display: block;
         width: 100%;
-        padding: 10px 0px;
+        padding: 10px 0;
     }
     
     #menubar {
@@ -297,7 +310,7 @@ h3,h4,p {
     .menuitem>a {
         font-size: 14px;
         line-height: 20px;
-        padding: 5px 0px;
+        padding: 5px 0;
     }
     .menuitem>a:active {
         background:#f5d789;
