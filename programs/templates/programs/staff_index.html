@@ -7,7 +7,7 @@
     <div class="grid">
     {% for member in staff_members %}
         <div class="grid-item">
-            <a class="fill-link" href="{{ member.get_absolute_url }}/">
+            <a class="fill-link" href="{{ member.get_absolute_url }}">
                 <span></span>
             </a>
             <img src="{{ member.picture.url }}" height="200px" class="thumbnail">
