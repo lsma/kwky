@@ -3,17 +3,23 @@
 {% block title %}ICR - {{ member.first_name|capfirst }} {{ member.last_name|capfirst }}{% endblock %}
 
 {% block content %}
-<div class="grid">
-    <div class="grid-item">
+<div class="flexc">
+    <div class="staff-detail-section">
         <img src="{{ member.picture.url }}" height="420">
     </div>
-    <div class="grid-item">
+    <div class="staff-detail-section">
         <p>
             <h1>{{ member.first_name|capfirst }} {{ member.last_name|capfirst }}</h1>
             <i>{{ member.job_title }}</i>
         </p>
     </div>
-    <div class="grid-item">
+    <div class="staff-detail-section flex-fill-left">
+        <p>
+            <h3><a href="mailt:{{ member.email }}">{{ member.email }}</a></h3>
+            <h3><a href="tel:{{ member.phone }}">{{ member.phone }}</a></h3>
+        </p>
+    </div>
+    <div class="staff-detail-section">
         <p>{{ member.bio }}</p>
     </div>
 </div>

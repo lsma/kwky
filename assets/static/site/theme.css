@@ -23,7 +23,8 @@ h3,h4,p {
 }
 
 #content {
-    padding: 0px 25px 25px 25px;
+    padding: 25px 25px 25px 25px;
+    margin: auto;
 }
 
 #page-back {
@@ -242,10 +243,35 @@ h3,h4,p {
 
 
 /* Staff Index Page */
-.grid {
+.flexc {
     display: -webkit-flex;
     display: flex;
     flex-flow: row wrap;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.flexc .flex-fill-right {
+    margin-right: auto;
+}
+
+.flexc .flex-fill-left {
+    margin-left: auto;
+    text-align: right;
+}
+
+.flex-top-main {
+    -webkit-order: -1;
+    order: -1;
+}
+
+.staff-detail-section {
+    text-align: left;
+    margin: 5px;
+    padding: 5px
+}
+
+.flexc.grid {
     -webkit-justify-content: center;
     justify-content: center;
 }
@@ -287,9 +313,19 @@ h3,h4,p {
         padding: 0 5px 5px 5px;
     }
     
+    .flexc .flex-fill-right {
+        margin-right: unset;
+    }
+    .flexc .flex-fill-left {
+        margin-left: unset;
+    }
     
 }
 @media screen and (max-width: 500px) {
+    .flexc>div {
+        text-align: center;
+        width: 100%;
+    }
     #footer-cols {
         display: block;
     }
