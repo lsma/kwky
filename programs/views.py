@@ -1,4 +1,4 @@
-import re
+import re, soundcloud
 
 from django.shortcuts import render, get_object_or_404
 
@@ -24,6 +24,11 @@ def program_index(request):
 def program_detail(request, prog_id):
     return HttpResponse('Program Detail Page: {}'.format(prog_id))
 
-def program_archive(request, prog_id, archive_year):
-    return HttpResponse('Program Archive Page: {} from {}'.format(prog_id,
-    archive_year))
+def program_archive(request, prog_id, archive_date):
+    ID = "341f473cd62b009a2a8ea8b037d8af49"
+    client = soundcloud.Client(client_id=ID)
+    track = client.get('/resolve', 
+        url='http://soundcloud.com/iowacatholicradio/cwn-080416')
+    context = {'title':   track.title,
+               'trackid': track.id,}
+    return render(request, 'programs/program_archive.html', context)
