@@ -127,3 +127,6 @@ STATICFILES_DIRS = [
 # Upload stuff
 MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/uploads')
 MEDIA_URL = '/assets/uploads/'
+
+SOUNDCLOUD_ID = '341f473cd62b009a2a8ea8b037d8af49'
+SOUNDCLOUD_UNAME = 'iowacatholicradio'

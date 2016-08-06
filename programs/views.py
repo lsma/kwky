@@ -1,9 +1,16 @@
-import re, soundcloud
+import re, soundcloud, datetime
 
+from requests import ConnectionError, HTTPError
+
+from django.http import Http404
 from django.shortcuts import render, get_object_or_404
+from django.conf import settings
 
 from .models import StaffProfile, Program
 
+# Soundcloud client option for retrieving soundcloud track IDs for embeded
+# player in /programs/[abbr]/[mmddyy]
+client = soundcloud.Client(client_id=settings.SOUNDCLOUD_ID)
 
 def staff_index(request):
     staff_members = StaffProfile.objects.order_by('org_rank')
@@ -25,10 +32,33 @@ def program_detail(request, prog_id):
     return HttpResponse('Program Detail Page: {}'.format(prog_id))
 
 def program_archive(request, prog_id, archive_date):
-    ID = "341f473cd62b009a2a8ea8b037d8af49"
-    client = soundcloud.Client(client_id=ID)
-    track = client.get('/resolve', 
-        url='http://soundcloud.com/iowacatholicradio/cwn-080416')
-    context = {'title':   track.title,
-               'trackid': track.id,}
+    # Extract date object from the date string
+    #   it will be in the form 'mmddyy'
+    date = date(month=int(archive_date[0:2]), 
+                day=int(archive_date[2:4]),
+                year=int(archive_date[4:6])+2000)
+
+    # Construct soundcloud url
+    sc_url = 'http://soundcloud.com/{}/{}-{}'.format(
+        settings.SOUNDCLOUD_UNAME,
+        prog_id,
+        date.strftime('%M%D%Y'),
+    )
+
+    # Get the track from soundcloud
+    try:
+        track = client.get('/resolve', url=sc_url)
+    except HTTPError:
+        return Http404('The requested episode cannot be found.' +
+                       '\nMost likely, you requested an episode ' +
+                       'from a date where no episode was aired.')
+    except ConnectionError:
+        return Http500('We could not connect to our podcasting service.' +
+                       '\nPlease visit {} to listen'.format(sc_url))
+    
+    # Construct the context, includes track data and date
+    context = {'track':   track,
+               'date':    date,}
+
+    # Render it
     return render(request, 'programs/program_archive.html', context)
