@@ -1,0 +1,27 @@
+{% extends "site/base.html" %}
+
+{% block title %}Program Index{% endblock %}
+
+{% block content %}
+{% if program_list %}
+    <div class="grid flexc">
+    {% for program in program_list %}
+        <div class="grid-item">
+            <a class="fill-link" href="{{ program.get_absolute_url }}">
+                <span></span>
+            </a>
+            {% if program.picture %}
+                <img src="{{ program.picture.url }}" height="200px" class="thumbnail">
+            {% endif %}
+            <h3>{{ program.title }}</h3>
+            <p>
+            {% for host in program.hosts.all %}
+                <i>{{ host.get_full_name }}</i>
+            {% endfor %}
+        </div>
+    {% endfor %}
+    </div>
+{% else %}
+    <p>Hmm...<br>There don't seem to be any programs.  That's odd.</p>
+{% endif %}
+{% endblock %}

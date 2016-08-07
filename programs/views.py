@@ -26,7 +26,9 @@ def staff_detail(request, ln, fn):
 
 
 def program_index(request):
-    return HttpResponse('Program Index Page')
+    programs = Program.objects.order_by('title')
+    context = {'program_list': programs}
+    return render(request, 'programs/program_index.html', context)
 
 def program_detail(request, prog_id):
     return HttpResponse('Program Detail Page: {}'.format(prog_id))
@@ -34,27 +36,31 @@ def program_detail(request, prog_id):
 def program_archive(request, prog_id, archive_date):
     # Extract date object from the date string
     #   it will be in the form 'mmddyy'
-    date = date(month=int(archive_date[0:2]), 
-                day=int(archive_date[2:4]),
-                year=int(archive_date[4:6])+2000)
+    date = datetime.date(month=int(archive_date[0:2]), 
+                         day=int(archive_date[2:4]),
+                         year=int(archive_date[4:6])+2000)
 
     # Construct soundcloud url
     sc_url = 'http://soundcloud.com/{}/{}-{}'.format(
         settings.SOUNDCLOUD_UNAME,
         prog_id,
-        date.strftime('%M%D%Y'),
+        date.strftime('%m%d%y'),
     )
 
     # Get the track from soundcloud
     try:
         track = client.get('/resolve', url=sc_url)
     except HTTPError:
-        return Http404('The requested episode cannot be found.' +
-                       '\nMost likely, you requested an episode ' +
-                       'from a date where no episode was aired.')
+        error_content = 'The requested episode cannot be found.' + \
+                        '\nMost likely, you requested an episode ' + \
+                        'from a date where no episode was aired.'
+        if settings.DEBUG:
+            error_content += '\n{}'.format(sc_url)
+
+        raise Http404(error_content)
     except ConnectionError:
-        return Http500('We could not connect to our podcasting service.' +
-                       '\nPlease visit {} to listen'.format(sc_url))
+        raise Http500('We could not connect to our podcasting service.' +
+                      '\nPlease visit {} to listen'.format(sc_url))
     
     # Construct the context, includes track data and date
     context = {'track':   track,

@@ -26,7 +26,7 @@ class Program(models.Model):
 
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
-        return reverse('program_detail', args=[self.abbr])
+        return reverse('program_detail', args=[self.abbr.lower()])
     
 class StaffProfile(models.Model):
     first_name = models.CharField(max_length=32)
@@ -46,12 +46,17 @@ class StaffProfile(models.Model):
         null=True,
         blank=True,
         on_delete=models.SET_NULL,
+        related_name='hosts',
     )
 
     def __str__(self):
         return '{} {}'.format(self.first_name.capitalize(),
                               self.last_name.capitalize(),)
     
+    def get_full_name(self):
+        return "{} {}".format(self.first_name.capitalize(),
+                              self.last_name.capitalize())
+
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('staff_detail', args=[self.last_name.lower(),
@@ -61,7 +66,11 @@ class StaffProfile(models.Model):
 class Link(models.Model):
     display_text = models.CharField(max_length=128)
     href = models.URLField('Link URL')
-    staff = models.ForeignKey(StaffProfile, on_delete=models.CASCADE)
+    staff = models.ForeignKey(
+        StaffProfile,
+        on_delete=models.CASCADE,
+        related_name='links',
+    )
 
     def __str__(self):
         return '[{}]({})'.format(self.display_text, self.href)
@@ -69,7 +78,11 @@ class Link(models.Model):
 class Showtime(models.Model):
     start_time = models.TimeField()
     duration = models.DurationField()
-    program = models.ForeignKey(Program, on_delete=models.CASCADE)
+    program = models.ForeignKey(
+        Program,
+        on_delete=models.CASCADE,
+        related_name='showtimes',
+    )
 
     def __str__(self):
         return '{}-{}:{}'.format(self.start_time,

@@ -4,12 +4,14 @@
 
 {% block content %}
 <div class="flexc">
+    {% if member.picture %}
     <div class="staff-detail-section">
         <img src="{{ member.picture.url }}" height="420">
     </div>
+    {% endif %}
     <div class="staff-detail-section">
         <p>
-            <h1>{{ member.first_name|capfirst }} {{ member.last_name|capfirst }}</h1>
+            <h1>{{ member.get_full_name }}</h1>
             <i>{{ member.job_title }}</i>
         </p>
     </div>
@@ -22,6 +24,11 @@
     <div class="staff-detail-section">
         <p>{{ member.bio }}</p>
     </div>
+    {% if member.program %}
+    <div class="staff-detail-section">
+        <a href="{{ member.program.get_absolute_url }}">{{ member.get_full_name }} is the host of <b>{{ member.program.title }}</b> &gt;&gt;&gt;</a>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 
