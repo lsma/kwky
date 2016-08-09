@@ -1,0 +1,56 @@
+.datetime {
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+  border: 2px solid #330066;
+  border-radius: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+.datetime a {
+    text-decoration: none;
+    color: #330066;
+}
+
+.datetime>div  {
+  position: relative;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.dateframe {
+  position: absolute;
+  width: 0%;
+  height: 100%;
+  overflow: hidden;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background: #fff;
+  color: #330066;
+  opacity: 0;
+  transition: opacity 500ms;
+  transition-delay: 500ms;
+}
+
+.dateframe.years a {
+    font-family: sans-serif;
+    font-size: 18px;
+}
+
+.dateframe:target{
+  width: 100%;
+  opacity: 1;
+  transition: opacity 500ms;
+}
+
+.datetime .months div, .datetime .days div {
+    display: inline-block;
+    margin: 0px 3px;
+}
+
+.datetime .months div:first-child, .datetime .days div:first-child {
+    display: block;
+    font-size: 14px;
+}
