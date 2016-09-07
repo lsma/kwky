@@ -36,9 +36,9 @@ def program_detail(request, prog_id):
 def program_archive(request, prog_id, month, day, year):
     # Extract date object from the date string
     #   it will be in the form 'mmddyy'
-    date = datetime.date(month=month,
-                         day=day,
-                         year=year)
+    date = datetime.date(month=int(month),
+                         day=int(day),
+                         year=int(year))
 
     # Construct soundcloud urls to try
     base_url = 'http://soundcloud.com/{}/{}-'.format(
