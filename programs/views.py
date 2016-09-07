@@ -33,12 +33,12 @@ def program_index(request):
 def program_detail(request, prog_id):
     return HttpResponse('Program Detail Page: {}'.format(prog_id))
 
-def program_archive(request, prog_id, archive_date):
+def program_archive(request, prog_id, month, day, year):
     # Extract date object from the date string
     #   it will be in the form 'mmddyy'
-    date = datetime.date(month=int(archive_date[0:2]), 
-                         day=int(archive_date[2:4]),
-                         year=int(archive_date[4:6])+2000)
+    date = datetime.date(month=month,
+                         day=day,
+                         year=year)
 
     # Construct soundcloud urls to try
     base_url = 'http://soundcloud.com/{}/{}-'.format(
