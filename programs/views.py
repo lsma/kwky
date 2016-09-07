@@ -40,13 +40,29 @@ def program_archive(request, prog_id, archive_date):
                          day=int(archive_date[2:4]),
                          year=int(archive_date[4:6])+2000)
 
-    # Construct soundcloud url
-    sc_url = 'http://soundcloud.com/{}/{}-{}'.format(
+    # Construct soundcloud urls to try
+    base_url = 'http://soundcloud.com/{}/{}-'.format(
         settings.SOUNDCLOUD_UNAME,
         prog_id,
-        date.strftime('%m%d%y'),
     )
+    sc_urls = [base_url+date.strftime('%m%d%y'),
+               base_url+date.strftime('%m%d%Y'),]
 
+    for url in sc_urls:
+        try:
+            track = client.get('/resolve', url=url)
+        except HTTPError,ConnectionError:
+            error_content = 'The requested episode cannot be found.' + \
+                            '\nMost likely, you requested an episode ' + \
+                            'from a date where no episode was aired.'
+            if settings.DEBUG:
+                error_content += '\n{}'.format(sc_url)
+
+            raise Http404(error_content)
+        except ConnectionError:
+            raise Http500('We could not connect to our podcasting service.' +
+                          '\nPlease visit {} to listen'.format(sc_url))
+        
     # Get the track from soundcloud
     try:
         track = client.get('/resolve', url=sc_url)
