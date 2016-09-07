@@ -60,9 +60,9 @@ def program_archive(request, prog_id, month, day, year):
 
             raise Http404(error_content)
         except ConnectionError:
-            raise Http500('We could not connect to our podcasting service.' +
-                          '\nPlease visit {} to listen'.format(sc_url))
-        
+            raise HttpResponseServerError('We could not connect to our ' + \
+                                          'podcasting service.\nPlease ' + \
+                                          'visit {} to listen'.format(sc_url))
     # Get the track from soundcloud
     try:
         track = client.get('/resolve', url=sc_url)
