@@ -2,7 +2,7 @@ import re, soundcloud, datetime
 
 from requests import ConnectionError, HTTPError
 
-from django.http import Http404
+from django.http import Http404,HttpResponseServerError
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 
@@ -51,7 +51,7 @@ def program_archive(request, prog_id, month, day, year):
     for url in sc_urls:
         try:
             track = client.get('/resolve', url=url)
-        except HTTPError,ConnectionError:
+        except HTTPError:
             error_content = 'The requested episode cannot be found.' + \
                             '\nMost likely, you requested an episode ' + \
                             'from a date where no episode was aired.'
@@ -75,8 +75,9 @@ def program_archive(request, prog_id, month, day, year):
 
         raise Http404(error_content)
     except ConnectionError:
-        raise Http500('We could not connect to our podcasting service.' +
-                      '\nPlease visit {} to listen'.format(sc_url))
+        raise HttpResponseServerError('We could not connect to our ' + \
+                                      'podcasting service.\nPlease ' + \
+                                      'visit {} to listen'.format(sc_url))
     
     # Construct the context, includes track data and date
     context = {'track':   track,
