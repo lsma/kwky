@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1 style="text-align:center">{{ prog.title }}</h1>
-    <div class="flexc">
+    <div class="flexc flextop">
         <div class="staff-detail-section">
             <i>Hosts</i>
             {% for host in hosts %}
@@ -15,7 +15,7 @@
         </div>
 
         <div class="staff-detail-section flex-fill-left">
-            <img src="{{ prog.picture.url }}" height="360px">
+            <img src="{{ prog.picture.url }}" height="300px">
         </div>
         
         <div class="staff-detail-section">

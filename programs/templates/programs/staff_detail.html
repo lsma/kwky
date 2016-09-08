@@ -3,7 +3,7 @@
 {% block title %}{{ member.first_name|capfirst }} {{ member.last_name|capfirst }}{% endblock %}
 
 {% block content %}
-<div class="flexc">
+<div class="flexc flexcenter">
     {% if member.picture %}
     <div class="staff-detail-section">
         <img src="{{ member.picture.url }}" height="200px">
