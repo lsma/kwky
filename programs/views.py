@@ -31,7 +31,12 @@ def program_index(request):
     return render(request, 'programs/program_index.html', context)
 
 def program_detail(request, prog_id):
-    return HttpResponse('Program Detail Page: {}'.format(prog_id))
+    prog = get_object_or_404(Program, abbr__iexact=prog_id)
+    hosts = StaffProfile.objects.filter(program=prog).order_by('org_rank')
+    context = {'prog': prog,
+               'sc_embed_src': 'http://www.reddit.com',
+               'hosts': hosts,}
+    return render(request, 'programs/program_detail.html', context)
 
 def program_archive(request, prog_id, month, day, year):
     # Extract date object from the date string
