@@ -1,5 +1,9 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto';
 
+* {
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Roboto', sans-serif;
     color: #aaa;
@@ -227,7 +231,7 @@ h3,h4,p {
     padding-left: 25px;
     padding-right: 25px;
 }
-    
+
 #footer-cols {
     display: table;
 }
@@ -297,7 +301,7 @@ h3,h4,p {
 
 .grid-item {
     position: relative;
-    width: 250px;   
+    width: 250px;
     margin: 10px;
     padding: 10px;
     text-align: center;
@@ -312,33 +316,45 @@ h3,h4,p {
     right: 0;
 }
 
+.track-count {
+    display: none;
+}
+
+.archive-item {
+    width: 100%;
+    text-align: center;
+    background-color: #efefef;
+    margin: 3px 0px;
+    padding: 5px;
+    box-sizing: border-box;
+}
 @media screen and (max-width: 1020px) {
     #page-content-box, #page-footer {
         width: 100%;
     }
 }
 @media screen and (max-width: 670px) {
-    
+
     #page-header .icr-banner {
         width: 100%;
         height: 100px;
         margin: 0;
         margin-bottom: -5px;
     }
-    
+
     #page-header-sidebox {
         float: none;
         text-align: center;
         padding: 0 5px 5px 5px;
     }
-    
+
     .flexc .flex-fill-right {
         margin-right: unset;
     }
     .flexc .flex-fill-left {
         margin-left: unset;
     }
-    
+
 }
 @media screen and (max-width: 500px) {
     .flexc>div {
@@ -353,10 +369,10 @@ h3,h4,p {
         width: 100%;
         padding: 10px 0;
     }
-    
+
     #menubar {
         display: block;
-    }    
+    }
     .menuitem {
         display: block;
         border: none;

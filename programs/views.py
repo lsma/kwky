@@ -31,14 +31,103 @@ def program_index(request):
     return render(request, 'programs/program_index.html', context)
 
 def program_detail(request, prog_id):
+    # Get the program's entry from the database
     prog = get_object_or_404(Program, abbr__iexact=prog_id)
+
+    # Get the host's entry from the database
     hosts = StaffProfile.objects.filter(program=prog).order_by('org_rank')
+
+
+    ## Get all soundcloud playlists for this program
+    ## (there is a playlist for each year)
+
+    # Grab all playlists
+    all_playlists = client.get('/resolve',
+        url='http://soundcloud.com/{}/sets'.format(settings.SOUNDCLOUD_UNAME))
+
+    # all_playlists now holds all the playlists of the user.  We will have to
+    # sort out the ones which are not for this particular program
+
+    prog_playlists = [] # this will hold all the playlists containing this program's archives
+    for playlist in all_playlists:
+
+        # this will extract the program id from the url
+        # eg: http://soundcloud.com/iowacatholicradio/prg-17
+        #                                             ^^^
+        playlist_prog_id = playlist.permalink_url.split('/')[-1].split('-')[0]
+
+        if playlist_prog_id == prog_id:      # if the program IDs match, add it
+
+            # It will make the template unreadable if we pass through this raw
+            # soundcloud api data, so let's pull out only the data we need before
+            # rendering the template.  We just need year and track count.
+            year = playlist.permalink_url.split('/')[-1].split('-')[-1] # see comment @ playlist_prog_id = ...
+            prog_playlists.append((year,playlist.track_count))
+
+    prog_playlists.sort(key=lambda x: x[0], reverse=True)
+
+    # Great!  Now we have a list of all the years and urls of all the playlists
+    # pertaining to this program in 'prog_playlists'
+
+    # Now we just have to get the latest track from the latest playlist.
+    newest_track = None
+    if prog_playlists:
+        newest_playlist_url = 'http://soundcloud.com/{}/sets/{}-{}'.format(
+            settings.SOUNDCLOUD_UNAME,
+            prog_id,
+            prog_playlists[0][0],
+        )
+
+
+        newest_playlist = client.get('/resolve', url=newest_playlist_url)
+
+        newest_track = sorted(newest_playlist.tracks, key=lambda x: x['created_at'])[-1]
+
     context = {'prog': prog,
                'sc_embed_src': 'http://www.reddit.com',
-               'hosts': hosts,}
+               'hosts': hosts,
+               'playlists': prog_playlists,
+               'newest_track': newest_track,}
     return render(request, 'programs/program_detail.html', context)
 
-def program_archive(request, prog_id, month, day, year):
+def program_archive_year(request, prog_id, year):
+    prog = get_object_or_404(Program, abbr__iexact=prog_id)
+
+    # Construct soundcloud urls to try
+    sc_url = 'http://soundcloud.com/{}/sets/{}-{}'.format(
+        settings.SOUNDCLOUD_UNAME,
+        prog_id,
+        year
+    )
+
+    # Get the playlist from soundcloud
+    try:
+        playlist = client.get('/resolve', url=sc_url)
+    except HTTPError:
+        error_content = 'The requested year cannot be found.' + \
+                        '\nMost likely, you requested an year ' + \
+                        'in which this program was never aired.'
+        if settings.DEBUG:
+            error_content += '\n{}'.format(sc_url)
+            raise Http404(error_content)
+
+    except ConnectionError:
+        raise HttpResponseServerError('We could not connect to our ' + \
+                                      'podcasting service.\nPlease ' + \
+                                      'visit {} to listen.'.format(sc_url))
+
+
+    # Construct the context, includes track data and date
+    context = {'playlist':   playlist,
+               'year':    '20{}'.format(year),
+               'program': prog,}
+
+    # Render it
+    return render(request, 'programs/program_archive_year.html', context)
+
+def program_archive_single(request, prog_id, month, day, year):
+    prog = get_object_or_404(Program, abbr__iexact=prog_id)
+
     # Extract date object from the date string
     #   it will be in the form 'mmddyy'
     date = datetime.date(month=int(month),
@@ -53,6 +142,7 @@ def program_archive(request, prog_id, month, day, year):
     sc_urls = [base_url+date.strftime('%m%d%y'),
                base_url+date.strftime('%m%d%Y'),]
 
+    # Get the track from soundcloud
     for url in sc_urls:
         try:
             track = client.get('/resolve', url=url)
@@ -61,32 +151,19 @@ def program_archive(request, prog_id, month, day, year):
                             '\nMost likely, you requested an episode ' + \
                             'from a date where no episode was aired.'
             if settings.DEBUG:
-                error_content += '\n{}'.format(sc_url)
+                error_content += '\n{}'.format(sc_urls)
 
             raise Http404(error_content)
         except ConnectionError:
             raise HttpResponseServerError('We could not connect to our ' + \
                                           'podcasting service.\nPlease ' + \
-                                          'visit {} to listen'.format(sc_url))
-    # Get the track from soundcloud
-    try:
-        track = client.get('/resolve', url=sc_url)
-    except HTTPError:
-        error_content = 'The requested episode cannot be found.' + \
-                        '\nMost likely, you requested an episode ' + \
-                        'from a date where no episode was aired.'
-        if settings.DEBUG:
-            error_content += '\n{}'.format(sc_url)
+                                          'visit {} to listen.'.format(url))
 
-        raise Http404(error_content)
-    except ConnectionError:
-        raise HttpResponseServerError('We could not connect to our ' + \
-                                      'podcasting service.\nPlease ' + \
-                                      'visit {} to listen'.format(sc_url))
-    
+
     # Construct the context, includes track data and date
     context = {'track':   track,
-               'date':    date,}
+               'date':    date,
+               'program': prog,}
 
     # Render it
-    return render(request, 'programs/program_archive.html', context)
+    return render(request, 'programs/program_archive_single.html', context)
