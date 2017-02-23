@@ -1,4 +1,5 @@
 {% load static from staticfiles %}
+{% load programs %}
 <!doctype html>
 
 <html lang="en">
@@ -41,20 +42,7 @@
                         </li>
                         <li class="menuitem">
                              <a href="/programs/">Programs</a>
-                            <ul class="submenu">
-                                <li class="submenuitem">
-                                     <a href="#">Faith on Trial</a>
-                                </li>
-                                <li class="submenuitem">
-                                     <a href="#">Catholic Women Now</a>
-                                </li>
-                                <li class="submenuitem">
-                                     <a href="#">John Leonetti in the Morning</a>
-                                </li>
-                                <li class="submenuitem">
-                                     <a href="#">Complete Schedule</a>
-                                </li>
-                            </ul>
+                             {% program_menu %}
                         </li>
                         <li class="menuitem">
                              <a href="/events/">Events</a>
