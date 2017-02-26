@@ -14,10 +14,12 @@
         <h1>{{ prog.title }}</h1>
         <i>Hosts</i>
         {% for host in hosts %}
-        <h1>{{ host }}</h1>
+        <h2>{{ host }}</h2>
         {% endfor %}
-        <!-- <i>Showtimes</i>
-        <h2>Teusdays at 9:00 AM and 9:00 PM</h2> -->
+        <i>Showtimes</i>
+        {% for showtime in showtimes %}
+        <h3>{{ showtime }}</h3>
+        {% endfor %}
     </div>
 </div>
 
