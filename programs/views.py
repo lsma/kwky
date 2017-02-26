@@ -6,7 +6,7 @@ from django.http import Http404,HttpResponseServerError
 from django.shortcuts import render, get_object_or_404
 from django.conf import settings
 
-from .models import StaffProfile, Program, Link
+from .models import StaffProfile, Program, StaffLink, ProgramLink
 
 # Soundcloud client option for retrieving soundcloud track IDs for embeded
 # player in /programs/[abbr]/[mmddyy]
@@ -37,7 +37,7 @@ def program_detail(request, prog_id):
     # Get the host's entry from the database
     hosts = StaffProfile.objects.filter(program=prog).order_by('org_rank')
 
-    links = Link.objects.filter(staff__in=hosts)
+    links = ProgramLink.objects.filter(program=prog)
 
     ## Get all soundcloud playlists for this program
     ## (there is a playlist for each year)

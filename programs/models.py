@@ -4,20 +4,8 @@ from django.db import models
 
 
 class Program(models.Model):
-    DAY_CHOICES = (('S','Sun'),
-                   ('M','Mon'),
-                   ('T','Tue'),
-                   ('W','Wed'),
-                   ('H','Thu'),
-                   ('F','Fri'),
-                   ('A','Sat'),
-                   ('D','Weekday'),
-                   ('E','Weekends'),
-                   ('X','Every Day'),
-                   (None, 'Day of Week'))
     title = models.CharField(max_length=128)
     abbr = models.SlugField('Program ID', max_length=3)
-    air_days = models.CharField(max_length=1, choices=DAY_CHOICES)
     picture = models.ImageField(upload_to='program/', null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
@@ -27,7 +15,7 @@ class Program(models.Model):
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('program_detail', args=[self.abbr.lower()])
-    
+
 class StaffProfile(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
@@ -52,7 +40,7 @@ class StaffProfile(models.Model):
     def __str__(self):
         return '{} {}'.format(self.first_name.capitalize(),
                               self.last_name.capitalize(),)
-    
+
     def get_full_name(self):
         return "{} {}".format(self.first_name.capitalize(),
                               self.last_name.capitalize())
@@ -63,7 +51,7 @@ class StaffProfile(models.Model):
                                              self.first_name.lower()])
 
 
-class Link(models.Model):
+class StaffLink(models.Model):
     display_text = models.CharField(max_length=128)
     href = models.URLField('Link URL')
     staff = models.ForeignKey(
@@ -73,9 +61,28 @@ class Link(models.Model):
     )
 
     def __str__(self):
-        return '[{}]({})'.format(self.display_text, self.href)
+        return '<a href="{}">{}</a>'.format(self.href, self.display_text)
+
+class ProgramLink(models.Model):
+    display_text = models.CharField(max_length=128)
+    href = models.URLField('Link URL')
+    program = models.ForeignKey(
+        Program,
+        on_delete=models.CASCADE,
+        related_name='links',
+    )
+
+    def __str__(self):
+        return '<a href="{}">{}</a>'.format(self.href, self.display_text)
 
 class Showtime(models.Model):
+    on_sun = models.BooleanField('Sunday',      default=False)
+    on_mon = models.BooleanField('Monday',      default=False)
+    on_tue = models.BooleanField('Tuesday',     default=False)
+    on_wed = models.BooleanField('Wednesday',   default=False)
+    on_thu = models.BooleanField('Thursday',    default=False)
+    on_fri = models.BooleanField('Friday',      default=False)
+    on_sat = models.BooleanField('Saturday',    default=False)
     start_time = models.TimeField()
     duration = models.DurationField()
     program = models.ForeignKey(
@@ -85,11 +92,24 @@ class Showtime(models.Model):
     )
 
     def __str__(self):
-        return '{}-{}:{}'.format(self.start_time,
-                                 self.get_end_time(),
-                                 self.duration)
+        #return '{}-{}'.format(self.start_time,
+        #                      self.get_end_time())
+        return '{} from {} to {}'.format(', '.join(self.get_days()),
+                                         self.start_time.strftime('%I:%M%p'),
+                                         self.get_end_time().strftime('%I:%M%p'))
+
+    def get_days(self):
+        s = []
+        if self.on_sun: s.append('Sunday')
+        if self.on_mon: s.append('Monday')
+        if self.on_tue: s.append('Tuesday')
+        if self.on_wed: s.append('Wednesday')
+        if self.on_thu: s.append('Thursday')
+        if self.on_fri: s.append('Friday')
+        if self.on_sat: s.append('Saturday')
+        return s
 
     def get_end_time(self):
         return (datetime.combine(date.min, self.start_time) + self.duration).time()
-    
+
 

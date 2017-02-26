@@ -1,9 +1,13 @@
 from django.contrib import admin
 from django.core.urlresolvers import reverse
-from .models import StaffProfile, Program, Link, Showtime
+from .models import StaffProfile, StaffLink, Program, ProgramLink, Showtime
 
-class LinkInline(admin.TabularInline):
-    model = Link
+class StaffLinkInline(admin.TabularInline):
+    model = StaffLink
+    extra = 0
+
+class ProgramLinkInline(admin.TabularInline):
+    model = ProgramLink
     extra = 0
 
 class ShowtimeInline(admin.TabularInline):
@@ -17,7 +21,7 @@ class DefaultAdminModel(admin.ModelAdmin):
 @admin.register(Program)
 class ProgramAdmin(DefaultAdminModel):
     list_display = ('abbr', 'title')
-    inlines = [ShowtimeInline]
+    inlines = [ShowtimeInline, ProgramLinkInline]
 
 @admin.register(StaffProfile)
 class StaffProfileAdmin(DefaultAdminModel):
@@ -30,7 +34,7 @@ class StaffProfileAdmin(DefaultAdminModel):
     list_display = ('__str__',
                     'job_title',
                     'org_rank',
-                    'email', 
+                    'email',
                     'phone',)
     fieldsets = [
         (None,                  {'fields':  ('first_name',
@@ -47,6 +51,6 @@ class StaffProfileAdmin(DefaultAdminModel):
                                 }),
     ]
 
-    inlines = [LinkInline]
+    inlines = [StaffLinkInline]
 
 
