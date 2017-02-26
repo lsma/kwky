@@ -1,12 +1,16 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto';
 
+/*
+ * Global Style
+ */
+
 * {
     box-sizing: border-box;
 }
 
 body {
     font-family: 'Roboto', sans-serif;
-    color: #aaa;
+    color: #999;
     box-sizing: border-box;
     margin: 0;
 }
@@ -14,12 +18,7 @@ body {
 a {
     color: #ebbe16;
 }
-/*
-img {
-    max-width: 100%;
-    height: auto;
-}
-*/
+
 h1, h2 {
     margin: 10px 0;
 }
@@ -28,9 +27,26 @@ h3,h4,p {
     margin: 5px 0;
 }
 
+/* Top-level content elements */
+.page-title {
+    margin: 0px 25px 10px 25px;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    background-color: #306;
+}
+
+.entry {
+    margin: 10px 25px;
+}
+
+/*
+ * Page Background and Toplevel layout elements
+ */
+
 #content {
-    padding: 25px 25px 25px 25px;
     margin: auto;
+    padding-bottom: 25px;
 }
 
 #page-back {
@@ -58,6 +74,9 @@ h3,h4,p {
     position: relative;
     background-color: #fff;
 }
+
+/* Site Header */
+
 #page-header {
     color: #330066;
 }
@@ -111,6 +130,8 @@ h3,h4,p {
     width: 120px;
     height: 60px;
 }
+
+/* Site Menu */
 #menubar-box {
     position:relative;
     z-index: 999;
@@ -209,6 +230,7 @@ h3,h4,p {
     color: #eee;
 }
 
+/* Page Footer */
 #page-footer {
     margin: auto;
     margin-top: 20px;
@@ -247,6 +269,66 @@ h3,h4,p {
     padding-left: 5px;
 }
 
+/* Event Index Page */
+.entry-image {
+    flex: 1;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center
+}
+
+.entry {
+    display: flex;
+    flex-wrap: wrap-reverse;
+}
+
+.entry-content {
+    flex: 3;
+}
+
+/* Event Detail Page */
+.flex-titlebox {
+    display: flex;
+    -webkit-flex-flow: row wrap-reverse;
+    flex-flow: row wrap-reverse;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.flex-titlebox>div {
+    margin: 25px;
+}
+
+.event-content {
+    padding: 25px;
+}
+
+.flex-titlebox>div:first-child {
+    margin-left: auto;
+}
+
+.flex-titlebox>div:last-child {
+    margin-right: auto;
+}
+
+/* Program Detail Page */
+
+.flex-programbox {
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-align-items: center;
+  margin: 0 100px;
+  align-items: stretch;
+}
+.flex-programbox>div {
+  margin: 10px;
+}
+.programbox-info {
+  font-size: 24px;
+  background-color: #eee;
+  padding: 10px;
+}
 
 /* Staff Index Page */
 .thumbnail {
@@ -328,6 +410,8 @@ h3,h4,p {
     padding: 5px;
     box-sizing: border-box;
 }
+
+/* Screen size adjustments */
 @media screen and (max-width: 1020px) {
     #page-content-box, #page-footer {
         width: 100%;
