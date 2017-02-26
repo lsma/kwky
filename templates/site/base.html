@@ -1,5 +1,6 @@
 {% load static from staticfiles %}
 {% load programs %}
+{% load events %}
 <!doctype html>
 
 <html lang="en">
@@ -46,6 +47,7 @@
                         </li>
                         <li class="menuitem">
                              <a href="/events/">Events</a>
+                             {% event_menu %}
                         </li>
                         <li class="menuitem">
                              <a href="/contact/">Contact</a>

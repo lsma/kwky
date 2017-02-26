@@ -20,13 +20,13 @@ from django.views.static import serve
 from django.contrib.staticfiles.urls import static,staticfiles_urlpatterns
 
 
-import programs.views 
+import programs.views
+import events.views
 
 urlpatterns = [
     url(r'^programs/', include('programs.program_urls')),
     url(r'^staff/', include('programs.staff_urls')),
-#    url(r'^assets/uploads/(?P<path>.*)$', serve),
-#    url(r'^assets/static/(?P<path>.*)$', serve),
+    url(r'^events/', include('events.urls')),
     url(r'^admin/', admin.site.urls),
 ]
 

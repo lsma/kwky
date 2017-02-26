@@ -1,0 +1,7 @@
+<ul class="submenu">
+    {% for event in events %}
+    <li class="submenuitem">
+         <a href="{{ event.get_absolute_url }}">{{ event.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
