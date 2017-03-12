@@ -1,20 +1,20 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto';
 
-/* Event Index Page */
-.entry-image {
-    flex: 1;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center
-}
+/* General Detail Page Elements */
 
 .entry {
-    display: flex;
-    flex-wrap: wrap-reverse;
+    margin: 10px 25px;
 }
 
-.entry-content {
-    flex: 3;
+/* Event Index Page */
+.listing {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    margin: 10px 25px;
+}
+
+.listing-image {
+    display: none;
 }
 
 /* Event Detail Page */
@@ -111,7 +111,7 @@
 
 .grid-item {
     position: relative;
-    width: 250px;
+    width: 100%;
     margin: 10px;
     padding: 10px;
     text-align: center;

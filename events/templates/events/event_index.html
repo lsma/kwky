@@ -7,15 +7,15 @@
 
 {% if event_list %}
 {% for event in event_list %}
-<div class="entry event-listing">
-  <div class="entry-content">
+<div class="listing">
+  <div class="listing-content">
     <h2>{{ event.title }}</h2>
     <p>{{ event.description }}
     <br>
     <a href="{{ event.get_absolute_url }}">Learn more...</a>
     </p>
   </div>
-  {% if event.image %}<div class="entry-image" style="background-image: url({{ event.image.url }});"></div>{% endif %}
+  {% if event.image %}<div class="listing-image" style="background-image: url({{ event.image.url }});"></div>{% endif %}
 </div>
 {% endfor %}
 {% else %}

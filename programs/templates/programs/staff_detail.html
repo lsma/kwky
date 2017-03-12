@@ -4,31 +4,32 @@
 
 {% block content %}
 <div class="flexc flexcenter">
-    {% if member.picture %}
-    <div class="staff-detail-section">
-        <img src="{{ member.picture.url }}" height="200px">
+    <div class="flex-titlebox">
+        {% if member.picture %}
+        <div class="title-image">
+            <img src="{{ member.picture.url }}" height="200px">
+        </div>
+        {% endif %}
+        <div class="title-box">
+            <p>
+                <h1>{{ member.get_full_name }}</h1>
+                <i>{{ member.job_title }}</i>
+            </p>
+            <p>
+                <h3><a href="mailto:{{ member.email }}">{{ member.email }}</a></h3>
+                <h3><a href="tel:{{ member.phone }}">{{ member.phone }}</a></h3>
+            </p>
+        </div>
     </div>
-    {% endif %}
-    <div class="staff-detail-section">
-        <p>
-            <h1>{{ member.get_full_name }}</h1>
-            <i>{{ member.job_title }}</i>
-        </p>
-    </div>
-    <div class="staff-detail-section flex-fill-left">
-        <p>
-            <h3><a href="mailto:{{ member.email }}">{{ member.email }}</a></h3>
-            <h3><a href="tel:{{ member.phone }}">{{ member.phone }}</a></h3>
-        </p>
-    </div>
-    <div class="staff-detail-section">
+    <div class="entry">
         <p>{{ member.bio }}</p>
+
+        {% if member.program %}
+        <div>
+            <a href="{{ member.program.get_absolute_url }}">{{ member.get_full_name }} is the host of <b>{{ member.program.title }}</b> &gt;&gt;&gt;</a>
+        </div>
+        {% endif %}
     </div>
-    {% if member.program %}
-    <div class="staff-detail-section">
-        <a href="{{ member.program.get_absolute_url }}">{{ member.get_full_name }} is the host of <b>{{ member.program.title }}</b> &gt;&gt;&gt;</a>
-    </div>
-    {% endif %}
 </div>
 {% endblock %}
 

@@ -2,11 +2,11 @@
 
 {% block title %}Staff Index{% endblock %}
 
+{% block content %}
 <div class="page-title"><h1>Staff</h1></div>
 
-{% block content %}
 {% if staff_members %}
-    <div class="grid flexc">
+    <div class="grid">
     {% for member in staff_members %}
         <div class="grid-item">
             <a class="fill-link" href="{{ member.get_absolute_url }}">
