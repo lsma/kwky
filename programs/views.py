@@ -80,7 +80,20 @@ def program_detail(request, prog_id):
         )
 
 
-        newest_playlist = client.get('/resolve', url=newest_playlist_url)
+        try:
+            newest_playlist = client.get('/resolve', url=newest_playlist_url)
+        except HTTPError as err:
+            error_content = 'The requested year cannot be found.' + \
+                            '\nMost likely, you requested an year ' + \
+                            'in which this program was never aired.'
+
+            if settings.DEBUG:
+                error_content += '\n{}'.format(sc_url)
+                raise Http404(error_content)
+        except ConnectionError:
+            raise HttpResponseServerError('We could not connect to our ' + \
+                                          'podcasting service.\nPlease ' + \
+                                          'visit {} to listen.'.format(url))
 
         newest_track = sorted(newest_playlist.tracks, key=lambda x: x['created_at'])[-1]
 
@@ -106,13 +119,14 @@ def program_archive_year(request, prog_id, year):
     # Get the playlist from soundcloud
     try:
         playlist = client.get('/resolve', url=sc_url)
-    except HTTPError:
+    except HTTPError as err:
         error_content = 'The requested year cannot be found.' + \
                         '\nMost likely, you requested an year ' + \
                         'in which this program was never aired.'
         if settings.DEBUG:
             error_content += '\n{}'.format(sc_url)
-            raise Http404(error_content)
+
+        raise Http404(error_content)
 
     except ConnectionError:
         raise HttpResponseServerError('We could not connect to our ' + \
