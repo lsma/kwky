@@ -1,0 +1,287 @@
+/*
+ *  header-desktop.css
+ *  LSMA
+ *  Global style settings and page header styling
+ *
+ */
+
+@import 'https://fonts.googleapis.com/css?family=Open+Sans|Roboto';
+
+/*
+ * Global Style
+ */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    color: #999;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+a {
+    color: #ebbe16;
+}
+
+h1, h2 {
+    margin: 10px 0;
+}
+
+h3,h4,p {
+    margin: 5px 0;
+}
+
+/*
+ * Top-level content elements
+ */
+.page-title {
+    margin: 0px 25px 10px 25px;
+    padding: 5px;
+    text-align: center;
+    color: #fff;
+    background-color: #306;
+}
+
+.entry {
+    margin: 10px 25px;
+}
+
+/*
+ * Page Background and Toplevel layout elements
+ */
+
+#content {
+    margin: auto;
+    padding-bottom: 25px;
+}
+
+#page-back {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #eee;
+    background-image: url('bg.jpg');
+    background-repeat: repeat;
+}
+#page-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+}
+#page-content-box {
+    margin: auto;
+    width: 1020px;
+    position: relative;
+    background-color: #fff;
+}
+
+/*
+ * Site Header
+ */
+
+#page-header {
+    color: #330066;
+}
+.icr-banner {
+    display: inline-block;
+    background-image: url("header.jpg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-left: 20px;
+}
+#page-header .icr-banner {
+    width: 50%;
+    height: 160px;
+    margin: 0;
+    margin-left: 20px;
+}
+#page-header-sidebox {
+    color: inherit;
+    float: right;
+    margin: 0;
+    padding: 32px;
+    text-align: right;
+}
+#page-header-sidebox p {
+    color: inherit;
+    margin-bottom: 5px;
+    margin-top: 0;
+}
+.phone {
+    color: inherit;
+    font-size: 24px;
+    font-family: sans-serif;
+}
+.small {
+    font-size: 16px;
+}
+.button {
+    display: inline-block;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+#btn-listen {
+    background-image: url("btn_listen.png");
+    width: 120px;
+    height: 60px;
+}
+#btn-donate {
+    background-image: url("btn_donate.png");
+    width: 120px;
+    height: 60px;
+}
+
+/*
+ * Site Menu
+ */
+#menubar-box {
+    position:relative;
+    z-index: 999;
+}
+
+#menubar {
+    display: table;
+    width: 100%;
+    background:#ebbe16;
+    background:-moz-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ebbe16), color-stop(100%, #dd9210));
+    background:-webkit-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:-o-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:-ms-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:linear-gradient(to bottom, #ebbe16 0, #dd9210 100%);
+    border-top:1px solid #FBF2D0;
+    font-family:'Open Sans', sans-serif;
+    font-weight:bold;
+    text-transform:uppercase;
+    text-shadow: 0 1px #cc9611;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.menuitem {
+    display: table-cell;
+    border-left: 1px solid #d9850c;
+    border-right: 1px solid #f3d71d;
+    width: 1%;
+    transition: width 3s;
+}
+
+.menuitem>a {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 25px 15px 24px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 1px #cc9611;
+}
+
+.menuitem:hover {
+    background:#ebbe16;
+}
+.menuitem>a:active {
+    background:#E4A813;
+}
+
+.submenu {
+    display: block;
+    position: absolute;
+    background:#ebbe16;
+    background:-moz-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:-webkit-gradient(linear, left top, left bottom, color-stop(0%, #ebbe16), color-stop(100%, #dd9210));
+    background:-webkit-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:-o-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:-ms-linear-gradient(top, #ebbe16 0, #dd9210 100%);
+    background:linear-gradient(to bottom, #ebbe16 0, #dd9210 100%);
+    width: 277px;
+    max-height: 0;
+    overflow-y:hidden;
+    padding: 0;
+    -webkit-transition: max-height 0s; /* Safari 3.1 to 6.0 */
+    transition: max-height 0s;
+}
+
+.menuitem:hover .submenu {
+    max-height: 999px;
+    -webkit-transition: max-height 800ms ease-out 0s; /* Safari 3.1 to 6.0 */
+    transition: max-height 800ms ease-out 0s;
+}
+
+.submenuitem {
+    display: block;
+    padding: 0;
+}
+.submenuitem>a {
+    display: block;
+    text-align: center;
+    font-size: 14px;
+    line-height: 20px;
+    padding: 4px 10px;
+    color: #fff;
+    text-decoration: none;
+    text-shadow: 0 1px #cc9611;
+}
+
+.submenuitem>a:hover {
+    text-decoration: underline;
+}
+.submenuitem>a:active {
+    text-decoration: underline;
+    color: #eee;
+}
+
+/*
+ * Page Footer
+ */
+#page-footer {
+    margin: auto;
+    margin-top: 20px;
+    width: 1020px;
+    bottom: 0;
+    background-color: #330066;
+    color: #fff;
+}
+
+#page-footer * {
+    margin: 0;
+}
+#page-footer>*:first-child {
+    padding-top: 15px;
+}
+#page-footer>*:last-child {
+    padding-bottom: 15px;
+}
+#page-footer>* {
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+#footer-cols {
+    display: table;
+}
+
+.footer-col {
+    display: table-cell;
+    width: 1%;
+    padding: 5px 25px;
+}
+
+
+.footer-col ul {
+    padding-left: 5px;
+}
+
+/*   Dedicated to the Seven Swords   */

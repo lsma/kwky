@@ -7,20 +7,26 @@
 
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <title>ICR - {% block title %}{% endblock %}</title>
         <meta name="description" content="Homepage">
         <meta name="author" content="lsma">
 
-        <link rel="stylesheet" href="{% static "site/theme.css" %}">
+        <link rel="stylesheet" media='screen and (min-width:   0px) and (max-width: 768px)' href="{% static "site/header-mobile.css" %}">
+        <link rel="stylesheet" media='screen and (min-width: 769px)' href="{% static "site/header-desktop.css" %}">
+        <link rel="stylesheet" media='speech or print' href="{% static "site/header-none.css" %}">
 
-        <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
+        <link rel="stylesheet" media='screen and (min-width:   0px) and (max-width: 480px)' href="{% static "site/mobile.css" %}">
+        <link rel="stylesheet" media='screen and (min-width: 481px) and (max-width: 768px)' href="{% static "site/tablet.css" %}">
+        <link rel="stylesheet" media='screen and (min-width: 769px)' href="{% static "site/desktop.css" %}">
+        <link rel="stylesheet" media='speech' href="{% static "site/speech.css" %}">
+        <link rel="stylesheet" media='print' href="{% static "site/print.css" %}">
+
+        <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     </head>
 
     <body>
-        <script src="js/scripts.js"></script>
         <div id="page-back"></div>
         <div id="page-container">
             <div id="page-content-box">
