@@ -6,8 +6,7 @@
 <div class="flexc flexcenter">
     <div class="flex-titlebox">
         {% if member.picture %}
-        <div class="title-image">
-            <img src="{{ member.picture.url }}" height="200px">
+        <div class="title-image staff-image" style="background-image: url({{ member.picture.url }});">
         </div>
         {% endif %}
         <div class="title-box">

@@ -5,8 +5,7 @@
 {% block content %}
 <div class="flex-titlebox">
     {% if prog.picture %}
-    <div class="title-image">
-        <img src="{{ prog.picture.url }}" height="300px">
+    <div class="title-image program-image" style="background-image: url({{ prog.picture.url }})">
     </div>
     {% endif %}
 

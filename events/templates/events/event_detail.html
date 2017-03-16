@@ -4,7 +4,7 @@
 
 {% block content %}
     <div class="flex-titlebox">
-    {% if event.image %}<div class="title-image"><img src="{{ event.image.url }}" height="300px"></div>{% endif %}
+    {% if event.image %}<div class="title-image event-image" style="background-image: url({{ event.image.url }});"></div>{% endif %}
     <div class="title-box">
     <h1 style="text-align:center">{{ event.title }}</h1>
 
