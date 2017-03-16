@@ -75,7 +75,7 @@ h3,h4,p {
 }
 #page-content-box {
     margin: auto;
-    width: 1020px;
+    max-width: 1020px;
     position: relative;
     background-color: #fff;
 }

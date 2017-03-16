@@ -37,12 +37,6 @@
     padding: 25px;
 }
 
-.title-image.event-image {
-    height: 300px;
-    width: 100%;
-    background-size: contain;
-}
-
 .title-image {
     background-size: cover;
     background-position: center;
@@ -51,6 +45,11 @@
     background-repeat: no-repeat;
 }
 
+.title-image.event-image {
+    height: 300px;
+    width: 100%;
+    background-size: contain;
+}
 
 /* Program Detail Page */
 

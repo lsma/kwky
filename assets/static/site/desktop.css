@@ -66,6 +66,14 @@
     background-repeat: no-repeat;
 }
 
+.title-image.event-image {
+    height: 300px;
+    width: 300px;
+    background-size: contain;
+    background-position-x: right;
+    background-color: rgba(0,0,0,0)
+}
+
 /* Program Detail Page */
 
 .title-image.program-image {
@@ -88,6 +96,10 @@
   font-size: 24px;
   background-color: #eee;
   padding: 10px;
+}
+
+.programbox-podcast {
+    min-width: 200px;
 }
 
 /* Staff Index Page */
