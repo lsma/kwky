@@ -85,21 +85,23 @@
   display: flex;
   -webkit-flex-flow: row nowrap;
   flex-flow: row nowrap;
-  -webkit-align-items: center;
-  margin: 0 100px;
+  -webkit-align-items: stretch;
   align-items: stretch;
+  padding: 0px 10px;
 }
-.flex-programbox>div {
-  margin: 10px;
-}
+
 .programbox-info {
-  font-size: 24px;
+  max-width: 550px;
+  font-size: 18px;
   background-color: #eee;
   padding: 10px;
+  margin: 10px 10px 10px auto;
 }
 
 .programbox-podcast {
     min-width: 200px;
+    max-width: 250px;
+    margin: 10px auto 10px 10px;
 }
 
 /* Staff Index Page */
