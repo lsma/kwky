@@ -23,6 +23,7 @@ def program_detail(request, prog_id):
     # Get playlist stuff
     prog_playlists = services.get_prog_playlists(prog_id)
 
+    newest_track = None
     if prog_playlists:
         newest_track = services.newest_track(prog_playlists[0])
 
