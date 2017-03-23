@@ -98,10 +98,15 @@
   margin: 10px 10px 10px auto;
 }
 
+
 .programbox-podcast {
     min-width: 200px;
     max-width: 250px;
     margin: 10px auto 10px 10px;
+}
+
+.flex-programbox div:only-child {
+    margin: 10px auto;
 }
 
 /* Staff Index Page */

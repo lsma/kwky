@@ -96,6 +96,10 @@
     margin: 10px auto 10px 10px;
 }
 
+.flex-programbox div:only-child {
+    margin: 10px auto;
+}
+
 /* Staff Index Page */
 .thumbnail {
     width: 200px;
