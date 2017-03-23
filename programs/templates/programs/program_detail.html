@@ -11,10 +11,12 @@
 
     <div class="title-box">
         <h1>{{ prog.title }}</h1>
+        {% if hosts %}
         <i>Hosts</i>
         {% for host in hosts %}
         <h2>{{ host }}</h2>
         {% endfor %}
+        {% endif %}
         {% if prog.pretty_showtimes %}
         <i>Showtimes</i>
         <h3>{{ prog.pretty_showtimes }}</h3>
@@ -28,7 +30,7 @@
     <div class="programbox-info">
         <p>{{ prog.description }}</p>
         {% for link in links %}
-		<p><a href="{{ link.href }}">{{ link.display_text }}</a></p>
+		<p><a href="{{ link.href }}" target="_blank">{{ link.display_text }}</a></p>
         {% endfor %}
     </div>
     {% endif %}
