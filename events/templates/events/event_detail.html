@@ -1,4 +1,5 @@
 {% extends "site/base.html" %}
+{% load events %}
 
 {% block title %}{{ event.title }}{% endblock %}
 
@@ -6,11 +7,11 @@
     <div class="flex-titlebox">
     {% if event.image %}<div class="title-image event-image" style="background-image: url({{ event.image.url }});"></div>{% endif %}
     <div class="title-box">
-    <h1 style="text-align:center">{{ event.title }}</h1>
+    <h1>{{ event.title }}</h1>
 
     <p>
     {% if event.address %}
-    <a href="https://www.google.com/maps/place/{{ event.address|urlencode }}">{{ event.location }}</a>
+    <a href="https://www.google.com/maps/place/{{ event.address|urlencode }}" target="_blank">{{ event.location }}</a>
     {% else %}
     {{ event.location }}
     {% endif %}
@@ -28,6 +29,6 @@
     </div>
 
     {% autoescape off %}
-    <div class="entry">{{ event.contents }}</div>
+    <div class="entry">{{ event.contents|markdown }}</div>
     {% endautoescape %}
 {% endblock %}
