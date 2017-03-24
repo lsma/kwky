@@ -25,8 +25,8 @@ class Event(models.Model):
     image = models.ImageField(upload_to='event/', null=True, blank=True)
 
     # Address of Event
-    location = models.CharField(max_length=128)
-    address = models.CharField(max_length=128, blank=True)
+    location = models.CharField('Name of venue', max_length=128)
+    address = models.CharField('Exact address of venue', max_length=128, blank=True)
 
     # When the event will take place
     event_start = models.DateTimeField()
@@ -34,8 +34,8 @@ class Event(models.Model):
 
 
     # When the event will be visible on the site
-    begin = models.DateTimeField()
-    expire = models.DateTimeField()
+    begin = models.DateTimeField('When to publish')
+    expire = models.DateTimeField('When to remove')
 
     # How high up on the event index should this page be displayed
     weight = models.PositiveIntegerField()
@@ -47,3 +47,18 @@ class Event(models.Model):
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('event_detail', args=[self.url.lower()])
+
+    class Meta:
+        get_latest_by = "event_start"
+        ordering = ['begin', 'weight']
+
+
+
+
+
+
+
+
+
+
+

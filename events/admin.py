@@ -11,4 +11,16 @@ class ProgramAdmin(DefaultAdminModel):
                     'begin',
                     'expire',
                     'weight',)
-    ordering = ['weight']
+    fieldsets = [
+        (None,                  {'fields':  (('title', 'url'),
+                                             'contents',)
+                                }),
+        ('Description',         {'fields':  (('image','description'),
+                                             ('location','address'),
+                                             ('event_start','event_end'),)
+                                }),
+        ('Visibility',           {'fields':  (('begin','expire'),
+                                              'weight',)
+                                }),
+    ]
+    ordering = ['begin', 'weight']
