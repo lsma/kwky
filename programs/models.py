@@ -84,6 +84,9 @@ class StaffLink(models.Model):
     def __str__(self):
         return '<a href="{}">{}</a>'.format(self.href, self.display_text)
 
+    class Meta:
+        order_with_respect_to = 'staff'
+
 class ProgramLink(models.Model):
     display_text = models.CharField(max_length=128)
     href = models.URLField('Link URL')
@@ -95,6 +98,9 @@ class ProgramLink(models.Model):
 
     def __str__(self):
         return '<a href="{}">{}</a>'.format(self.href, self.display_text)
+
+    class Meta:
+        order_with_respect_to = 'program'
 
 class Showtime(models.Model):
     on_mon = models.BooleanField('Monday',      default=False)
