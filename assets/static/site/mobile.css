@@ -18,6 +18,18 @@
 }
 
 /* Event Detail Page */
+.eventbox>div {
+    margin: 30px;
+}
+
+.eventbox-tickets {
+    min-height: 400px;
+}
+
+.eventbox-tickets>iframe {
+    min-height: 450px;
+}
+
 .flex-titlebox {
     display: flex;
     -webkit-flex-flow: column-reverse wrap;
@@ -33,9 +45,6 @@
 .title-box {
     text-align: center;
     padding: 0px 10px;
-}
-.event-content {
-    padding: 25px;
 }
 
 .title-image {
