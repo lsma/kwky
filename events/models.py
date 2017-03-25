@@ -28,6 +28,9 @@ class Event(models.Model):
     location = models.CharField('Name of venue', max_length=128)
     address = models.CharField('Exact address of venue', max_length=128, blank=True)
 
+    # EventBrite EID
+    eid = models.CharField('EventBrite EID', max_length=24, blank=True)
+
     # When the event will take place
     event_start = models.DateTimeField()
     event_end  = models.DateTimeField()

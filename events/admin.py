@@ -12,7 +12,7 @@ class ProgramAdmin(DefaultAdminModel):
                     'expire',
                     'weight',)
     fieldsets = [
-        (None,                  {'fields':  (('title', 'url'),
+        (None,                  {'fields':  (('title', 'url','eid'),
                                              'contents',)
                                 }),
         ('Description',         {'fields':  (('image','description'),

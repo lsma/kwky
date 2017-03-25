@@ -3,6 +3,7 @@
 
 {% block title %}{{ event.title }}{% endblock %}
 
+
 {% block content %}
     <div class="flex-titlebox">
     {% if event.image %}<div class="title-image event-image" style="background-image: url({{ event.image.url }});"></div>{% endif %}
@@ -28,7 +29,21 @@
     </div>
     </div>
 
+    {% if event.contents or event.eid %}
+    <div class="eventbox">
+
+    {% if event.contents %}
     {% autoescape off %}
-    <div class="entry">{{ event.contents|markdown }}</div>
+    <div class="eventbox-description">{{ event.contents|markdown }}</div>
     {% endautoescape %}
+    {% endif %}
+
+    {% if event.eid %}
+    <div class="eventbox-tickets">
+        <iframe src="//eventbrite.com/tickets-external?eid={{ event.eid }}&ref=etckt" frameborder="0" width="100%" vspace="0" hspace="0" marginheight="5" marginwidth="5" scrolling="auto" allowtransparency="true"></iframe>
+    </div>
+    {% endif %}
+
+    </div>
+    {% endif %}
 {% endblock %}
