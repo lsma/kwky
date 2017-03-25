@@ -47,9 +47,9 @@ class StaffProfile(models.Model):
                   'in lower positions (eg Office Assistant) should ' + \
                   'recieve a higher value here.')
     picture = models.ImageField(upload_to='staff/')
-    email = models.EmailField('Contact Email')
-    phone = models.CharField('Phone Number',max_length=14)
-    bio = models.TextField()
+    email = models.EmailField('Contact Email',blank=True)
+    phone = models.CharField('Phone Number',max_length=14,blank=True)
+    bio = models.TextField(blank=True)
     program = models.ForeignKey(
         Program,
         null=True,
