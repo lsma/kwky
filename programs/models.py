@@ -37,6 +37,9 @@ class Program(models.Model):
         from django.core.urlresolvers import reverse
         return reverse('program_detail', args=[self.abbr.lower()])
 
+    class Meta:
+        ordering = ['title']
+
 class StaffProfile(models.Model):
     first_name = models.CharField(max_length=32)
     last_name = models.CharField(max_length=32)
@@ -70,6 +73,9 @@ class StaffProfile(models.Model):
         from django.core.urlresolvers import reverse
         return reverse('staff_detail', args=[self.last_name.lower(),
                                              self.first_name.lower()])
+
+    class Meta:
+        ordering = ['org_rank', 'last_name']
 
 
 class StaffLink(models.Model):

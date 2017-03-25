@@ -37,8 +37,8 @@ class StaffProfileAdmin(DefaultAdminModel):
                     'email',
                     'phone',)
     fieldsets = [
-        (None,                  {'fields':  ('first_name',
-                                             'last_name',
+        (None,                  {'fields':  (('first_name',
+                                              'last_name',),
                                              ('job_title',
                                               'org_rank'),
                                              'program',)

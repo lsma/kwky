@@ -18,9 +18,7 @@
             {% endif %}
             <h3>{{ program.title }}</h3>
             <p>
-            {% for host in program.hosts.all %}
-                <i>{{ host.get_full_name }}</i>
-            {% endfor %}
+            <i>{{ program.hosts.all|join:", " }}</i>
         </div>
     {% endfor %}
     </div>
