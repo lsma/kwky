@@ -26,9 +26,7 @@ class ProgramAdmin(DefaultAdminModel):
 @admin.register(StaffProfile)
 class StaffProfileAdmin(DefaultAdminModel):
     def view_on_site(self, obj):
-        names = {'fn': obj.first_name, 'ln': obj.last_name}
-        url = reverse('staff_detail', kwargs=names)
-        return url
+        return obj.get_absolute_url()
 
     ordering = ['org_rank']
     list_display = ('__str__',

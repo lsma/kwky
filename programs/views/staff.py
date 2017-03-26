@@ -8,9 +8,7 @@ def staff_index(request):
     context = {'staff_members': staff_members}
     return render(request, 'programs/staff_index.html', context)
 
-def staff_detail(request, ln, fn):
-    member = get_object_or_404(StaffProfile,
-        first_name__iexact=fn,
-        last_name__iexact=ln)
+def staff_detail(request, slug):
+    member = get_object_or_404(StaffProfile, slug__iexact=slug)
     context = {'member': member}
     return render(request, 'programs/staff_detail.html', context)

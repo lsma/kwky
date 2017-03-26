@@ -1,6 +1,8 @@
 from datetime import datetime, date
+import string
 
 from django.db import models
+from django.core.urlresolvers import reverse
 
 from programs import services
 
@@ -34,7 +36,6 @@ class Program(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
         return reverse('program_detail', args=[self.abbr.lower()])
 
     class Meta:
@@ -53,6 +54,7 @@ class StaffProfile(models.Model):
     email = models.EmailField('Contact Email',blank=True)
     phone = models.CharField('Phone Number',max_length=14,blank=True)
     bio = models.TextField(blank=True)
+    slug = models.SlugField(max_length=48, editable=False)
     program = models.ForeignKey(
         Program,
         null=True,
@@ -60,6 +62,13 @@ class StaffProfile(models.Model):
         on_delete=models.SET_NULL,
         related_name='hosts',
     )
+
+    def save(self, *args, **kwargs):
+        s = self.first_name.lower()+' '+self.last_name.lower()
+        s = ''.join(e for e in s if (e.isalnum() or e.isspace()))
+        s = s.translate(str.maketrans(string.whitespace, '_' * len(string.whitespace)))
+        self.slug = s
+        super(StaffProfile, self).save(*args, **kwargs)
 
     def __str__(self):
         return '{} {}'.format(self.first_name.capitalize(),
@@ -70,9 +79,7 @@ class StaffProfile(models.Model):
                               self.last_name.capitalize())
 
     def get_absolute_url(self):
-        from django.core.urlresolvers import reverse
-        return reverse('staff_detail', args=[self.last_name.lower(),
-                                             self.first_name.lower()])
+        return reverse('staff_detail', args=[self.slug])
 
     class Meta:
         ordering = ['org_rank', 'last_name']
