@@ -10,6 +10,7 @@ class ProgramAdmin(DefaultAdminModel):
                     'event_start',
                     'begin',
                     'expire',
+                    'is_active',
                     'weight',)
     fieldsets = [
         (None,                  {'fields':  (('title', 'url','eid'),
@@ -24,3 +25,4 @@ class ProgramAdmin(DefaultAdminModel):
                                 }),
     ]
     ordering = ['begin', 'weight']
+    list_filter = ['event_start']

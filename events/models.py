@@ -1,19 +1,5 @@
+from django.utils import timezone
 from django.db import models
-
-#
-#  ***************
-#  *             *  Title
-#  *    Image    *  Location
-#  *             *  Date
-#  ***************
-#
-#  Description.... *********
-#  ............... *       *
-#  ............... *Tickets*
-#  ............... *       *
-#  ............... *********
-#  ............... *****>>>*
-#  ...............
 
 
 class Event(models.Model):
@@ -50,6 +36,13 @@ class Event(models.Model):
     def get_absolute_url(self):
         from django.core.urlresolvers import reverse
         return reverse('event_detail', args=[self.url.lower()])
+
+    def is_active(self):
+        now = timezone.now()
+        return (self.begin <= now <= self.expire)
+    is_active.admin_order_field = 'event_start'
+    is_active.boolean = True
+    is_active.short_description = 'Event is live?'
 
     class Meta:
         get_latest_by = 'event_start'
