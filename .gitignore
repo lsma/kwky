@@ -1,8 +1,7 @@
-# This is an empty .gitignore file
-
 db.sqlite3
 **/__pycache__
 **/migrations
 assets/uploads
 **/*.swp
 github_key.txt
+*.pyc
