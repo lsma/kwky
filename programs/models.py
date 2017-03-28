@@ -75,7 +75,7 @@ class StaffProfile(models.Model):
                               self.last_name.capitalize(),)
 
     def get_full_name(self):
-        return "{} {}".format(self.first_name.capitalize(),
+        return '{} {}'.format(self.first_name.capitalize(),
                               self.last_name.capitalize())
 
     def get_absolute_url(self):

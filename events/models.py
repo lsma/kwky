@@ -52,7 +52,7 @@ class Event(models.Model):
         return reverse('event_detail', args=[self.url.lower()])
 
     class Meta:
-        get_latest_by = "event_start"
+        get_latest_by = 'event_start'
         ordering = ['begin', 'weight']
 
 
