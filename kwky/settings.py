@@ -132,7 +132,15 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'assets/uploads')
 MEDIA_URL = '/assets/uploads/'
 
-SOUNDCLOUD_ID = '341f473cd62b009a2a8ea8b037d8af49'
+# Email stuff
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = os.environ['GMAIL_UNAME']
+EMAIL_HOST_PASSWORD = os.environ['GMAIL_PASSW']
+EMAIL_USE_SSL = True
+
+# App stuff
+SOUNDCLOUD_ID = os.environ['SOUNDCLOUD_APPID']
 SOUNDCLOUD_UNAME = 'iowacatholicradio'
 
-EVENTBRITE_KEY = '6FL7MZFNQ2GDELW4ID'
+EVENTBRITE_KEY = os.environ['EVENTBRITE_KEY']
