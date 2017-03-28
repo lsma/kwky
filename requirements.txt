@@ -1,5 +1,6 @@
-Django
+Django==1.9
 Pillow
 soundcloud==0.5
 markdown>=2.6.8
 six
+mysqlclient
