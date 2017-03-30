@@ -26,7 +26,14 @@ def markdown(value, autoescape=True):
 
 @register.inclusion_tag('event_submenu.html')
 def event_menu():
-    events = Event.objects.filter(expire__range=(datetime.datetime.now(), MAX_TIME),
-                                  begin__range=(MIN_TIME, datetime.datetime.now()),
+    now = timezone.now()
+    events = Event.objects.filter(expire__range=(now, MAX_TIME),
+                                  begin__range=(MIN_TIME, now),
                            ).order_by('weight')
     return {'events': events}
+
+@register.simple_tag
+def current_events():
+    return Event.objects.filter(expire__range=(now, MAX_TIME),
+                                begin__range=(MIN_TIME, now),
+                               ).order_by('weight')
