@@ -245,7 +245,7 @@ h3,h4,p {
 #page-footer {
     margin: auto;
     margin-top: 20px;
-    width: 1020px;
+    max-width: 1020px;
     bottom: 0;
     background-color: #330066;
     color: #fff;
