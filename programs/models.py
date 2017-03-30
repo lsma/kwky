@@ -42,8 +42,12 @@ class Program(models.Model):
         ordering = ['title']
 
 class StaffProfile(models.Model):
-    first_name = models.CharField(max_length=32)
-    last_name = models.CharField(max_length=32)
+    first_name = models.CharField(max_length=32,
+        help_text='Apostrophes will create odd capitalization because of ' + \
+                  'the way str.title() works.')
+    last_name = models.CharField(max_length=32,
+        help_text='Apostrophes will create odd capitalization because of ' + \
+                  'the way str.title() works.')
     job_title = models.CharField(max_length=64)
     org_rank = models.PositiveIntegerField('Orginizational Weight',
         help_text='Staff members who are more important (eg General ' + \
@@ -71,12 +75,8 @@ class StaffProfile(models.Model):
         super(StaffProfile, self).save(*args, **kwargs)
 
     def __str__(self):
-        return '{} {}'.format(self.first_name.capitalize(),
-                              self.last_name.capitalize(),)
-
-    def get_full_name(self):
-        return '{} {}'.format(self.first_name.capitalize(),
-                              self.last_name.capitalize())
+        return '{} {}'.format(self.first_name.title(),
+                              self.last_name.title(),)
 
     def get_absolute_url(self):
         return reverse('staff_detail', args=[self.slug])
