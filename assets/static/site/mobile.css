@@ -22,6 +22,10 @@
     margin: 30px;
 }
 
+.eventbox-description {
+    font-size: 1.2em;
+}
+
 .eventbox-tickets {
     min-height: 400px;
 }
