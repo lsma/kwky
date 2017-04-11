@@ -25,17 +25,13 @@ def markdown(value, autoescape=True):
     #    esc = lambda x: x
     return mark_safe(md(conditional_escape(value)))
 
-@register.inclusion_tag('event_submenu.html')
-def event_menu():
-    now = timezone.now()
-    events = Event.objects.filter(expire__range=(now, MAX_TIME),
-                                  begin__range=(MIN_TIME, now),
-                           ).order_by('weight')
-    return {'events': events}
-
 @register.simple_tag
 def current_events():
     now = timezone.now()
     return Event.objects.filter(expire__range=(now, MAX_TIME),
                                 begin__range=(MIN_TIME, now),
                                ).order_by('weight')
+
+@register.inclusion_tag('event_submenu.html')
+def event_menu():
+    return {'events': current_events()}
