@@ -281,6 +281,30 @@ h3,h4,p {
     padding-left: 5px;
 }
 
+/* Message box */
+.message-area {
+    position: fixed;
+    bottom: 0;
+    left:  0;
+    right: 0;
+    background-color: #fefefe;
+    z-index: 999;
+    text-align: center;
+    padding: 10px;
+    color: #553b88;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Open Sans;
+    border-top: 3px double #553b88;
+    transition: height,padding .5s linear 0s;
+}
+
+.message-area:empty {
+    height: 0;
+    padding: 0;
+    border: none;
+    transition: height,padding .5s linear 0s;
+}
 
 
 /*   Dedicated to the Seven Swords   */
