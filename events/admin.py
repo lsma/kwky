@@ -6,6 +6,8 @@ class DefaultAdminModel(admin.ModelAdmin):
 
 @admin.register(Event)
 class ProgramAdmin(DefaultAdminModel):
+    def view_on_site(self, obj):
+        return obj.get_absolute_url()
     list_display = ('__str__',
                     'event_start',
                     'begin',
