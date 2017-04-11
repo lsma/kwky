@@ -21,6 +21,7 @@ from django.contrib.staticfiles.urls import static,staticfiles_urlpatterns
 
 
 urlpatterns = [
+    url(r'^downloads/', include('downloads.urls')),
     url(r'^programs/', include('programs.program_urls')),
     url(r'^staff/', include('programs.staff_urls')),
     url(r'^events/', include('events.urls')),

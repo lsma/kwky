@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'downloads.apps.DownloadsConfig',
     'events.apps.EventsConfig',
     'programs.apps.ProgramsConfig',
     'django.contrib.admin',
