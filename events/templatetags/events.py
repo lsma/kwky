@@ -35,6 +35,7 @@ def event_menu():
 
 @register.simple_tag
 def current_events():
+    now = timezone.now()
     return Event.objects.filter(expire__range=(now, MAX_TIME),
                                 begin__range=(MIN_TIME, now),
                                ).order_by('weight')
