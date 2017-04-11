@@ -11,8 +11,8 @@ class Event(models.Model):
     image = models.ImageField(upload_to='event/', null=True, blank=True)
 
     # Address of Event
-    location = models.CharField('Name of venue', max_length=128)
-    address = models.CharField('Exact address of venue', max_length=128, blank=True)
+    location = models.CharField('Name of venue', max_length=256, blank=True)
+    address = models.CharField('Exact address of venue', max_length=256, blank=True)
 
     # EventBrite EID
     eid = models.CharField('EventBrite EID', max_length=24, blank=True)
@@ -28,6 +28,9 @@ class Event(models.Model):
 
     # How high up on the event index should this page be displayed
     weight = models.PositiveIntegerField()
+
+
+    homepage_slide = models.ImageField(upload_to='slides/', null=True, blank=True)
 
 
     def __str__(self):
