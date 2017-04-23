@@ -33,6 +33,8 @@ urlpatterns = [
     url(r'^reset/done/$', auth_views.password_reset_complete, name='password_reset_complete'),
 
     url(r'^admin/', admin.site.urls),
+
+    url(r'^', include('home.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

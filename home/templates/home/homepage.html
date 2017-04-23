@@ -1,0 +1,14 @@
+{% extends "site/base.html" %}
+{% load home %}
+
+{% block title %}Homepage{% endblock %}
+
+
+{% block content %}
+<div class="slideshow-container"></div>
+<div class="grid">
+    {% for card in cards %}
+    {% render_card card %}
+    {% endfor %}
+</div>
+{% endblock %}
