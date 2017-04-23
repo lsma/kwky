@@ -25,7 +25,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['kwky.pythonanywhere.com','iowacatholicradio.com','kwky.com','kwky.org']
 
 SITE_ID = 1
 
@@ -33,6 +33,7 @@ SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
+    'home.apps.HomeConfig',
     'downloads.apps.DownloadsConfig',
     'events.apps.EventsConfig',
     'programs.apps.ProgramsConfig',
