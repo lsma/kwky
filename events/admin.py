@@ -5,7 +5,7 @@ class DefaultAdminModel(admin.ModelAdmin):
     empty_value_display = 'N/A'
 
 @admin.register(Event)
-class ProgramAdmin(DefaultAdminModel):
+class EventAdmin(DefaultAdminModel):
     def view_on_site(self, obj):
         return obj.get_absolute_url()
     list_display = ('__str__',
