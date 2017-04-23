@@ -1,7 +1,6 @@
 from django.utils import timezone
 from django.db import models
 
-
 class Event(models.Model):
     # Main info
     url = models.SlugField(max_length=128)
@@ -30,9 +29,6 @@ class Event(models.Model):
     weight = models.PositiveIntegerField()
 
 
-    homepage_slide = models.ImageField(upload_to='slides/', null=True, blank=True)
-
-
     def __str__(self):
         return self.title
 
@@ -50,14 +46,5 @@ class Event(models.Model):
     class Meta:
         get_latest_by = 'event_start'
         ordering = ['begin', 'weight']
-
-
-
-
-
-
-
-
-
 
 
