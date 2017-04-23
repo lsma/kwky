@@ -1,4 +1,4 @@
-Django==1.9
+Django==1.11
 Pillow
 soundcloud==0.5
 markdown>=2.6.8
