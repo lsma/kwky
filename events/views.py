@@ -1,12 +1,12 @@
-import datetime, calendar
+import datetime
 
 from django.utils import timezone
 from django.shortcuts import render, get_object_or_404
 
 from .models import Event
 
-MIN_TIME = datetime.datetime(datetime.MINYEAR, 1, 1)
-MAX_TIME = datetime.datetime(datetime.MAXYEAR, 12, calendar.monthrange(datetime.MAXYEAR,12)[1])
+MIN_TIME = datetime.datetime.min
+MAX_TIME = datetime.datetime.max
 
 def event_index(request):
     now = timezone.now()
