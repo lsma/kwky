@@ -1,6 +1,6 @@
 <div class="home-card">
-    {% if title %}<h1>{{ title }}</h1>{% endif %}
-    {% if image %}<div class="home-card-image" style="background-image: url({{ image }});"></div>{% endif %}
+    {% if title %}<h2>{{ title }}</h2>{% endif %}
+    {% if image %}<div style="background-image: url({{ image }});"></div>{% endif %}
     {% if content %}<p>{{ content }}</p>{% endif %}
     {% if button %}<a class="home-card-button" href="{{ button }}">Learn more...</a>{% endif %}
 </div>
