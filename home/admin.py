@@ -30,7 +30,8 @@ class SlideAdmin(DefaultAdminModel):
 class CardAdmin(DefaultAdminModel):
     def view_on_site(self, obj):
         return '/'
-    list_display = ('title',
+    list_display = ('id',
+                    'title',
                     'image',
                     'content',
                     'button',
