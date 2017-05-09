@@ -125,8 +125,8 @@
     flex-flow: row wrap;
     -webkit-justify-content: center;
     justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
 }
 
 .grid-item {

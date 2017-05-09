@@ -16,7 +16,7 @@
 /* Homepage */
 .home-card {
     display: block;
-    width: 220px;
+    max-width: 220px;
     margin: 5px;
     padding: 5px;
 }
@@ -31,6 +31,12 @@ a.home-card-button {
     border-radius: 4px;
 }
 
+
+.home-card-image {
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
 
 /* Event Index Page */
 .listing {
@@ -157,10 +163,10 @@ a.home-card-button {
     display: flex;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-align-items: center;
-    align-items: center;
+    -webkit-justify-content: space-around;
+    justify-content: space-around;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
 }
 
 .grid-item {
