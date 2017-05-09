@@ -13,6 +13,31 @@
     margin: 10px 25px;
 }
 
+/* Homepage */
+.home-card {
+    display: block;
+    max-width: 220px;
+    margin: 5px;
+    padding: 5px;
+}
+
+a.home-card-button {
+    padding: 10px;
+    margin: 5px 0;
+    color: #fff;
+    display: inline-block;
+    background-color: #553b88;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+
+.home-card-image {
+    background-position: left;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
 /* Event Index Page */
 .listing {
     display: flex;

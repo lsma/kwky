@@ -6,6 +6,15 @@
     margin: 10px 25px;
 }
 
+
+/* Homepage */
+.home-card {
+    display: block;
+    width: 100%;
+    margin: 8px;
+    padding: 8px;
+}
+
 /* Event Index Page */
 .listing {
     display: flex;
