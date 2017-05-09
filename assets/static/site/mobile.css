@@ -11,8 +11,18 @@
 .home-card {
     display: block;
     width: 100%;
-    margin: 8px;
-    padding: 8px;
+    padding: 16px;
+}
+
+
+#one-week-challenge-image {
+    height: 250px;
+    width: 100%;
+    background-image: url("EncounterJesus_2.png");
+    background-size: contain;
+    background-position: center;
+    background-color: #eee;
+    background-repeat: no-repeat;
 }
 
 /* Event Index Page */

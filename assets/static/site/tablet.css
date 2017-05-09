@@ -38,6 +38,28 @@ a.home-card-button {
     background-repeat: no-repeat;
 }
 
+#one-week-challenge-image {
+    min-height: 400px;
+    min-width: 400px;
+    background-image: url("EncounterJesus_2.png");
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+    background-repeat: no-repeat;
+}
+
+.home-card.owc-home-card {
+    max-width: none;
+}
+
+.donate-home-card, .testimonial-home-card {
+    max-width: 280px;
+}
+
+.donate-home-card p {
+    font-size: 1.2em;
+}
+
 /* Event Index Page */
 .listing {
     display: flex;

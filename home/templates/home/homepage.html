@@ -8,7 +8,20 @@
 <div class="slideshow-container"></div>
 <div class="grid">
     {% for card in cards %}
-    {% render_card card %}
+    <div class="home-card">
+        {% render_card card %}
+    </div>
     {% endfor %}
+    <div class="home-card owc-home-card">
+        <div id="one-week-challenge-image"></div>
+        <a class="home-card-button" href="\one-week-challenge">I'm in!</a>
+    </div>
+    <div class="home-card donate-home-card">
+        <h2>Please Remember Us</h2>
+        <p><i>Would you consider making a gift to Iowa Catholic Radio? We're here to bring souls to Christ, and you're a big part of our mission. Thanks for all you do!</i></p>
+    </div>
+    <div class="home-card testimonial-home-card">
+        <h2>Testimonials</h2>
+    </div>
 </div>
 {% endblock %}
