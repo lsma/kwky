@@ -23,7 +23,14 @@ def render_card(card):
     image = card.image.url if card.image else None
     content = mark_safe(md(conditional_escape(card.content)))
     button = card.button
+
+    if content:
+        image_height = 100
+    else:
+        image_height = 180
+
     return {'title': title,
             'image': image,
             'content': content,
-            'button': button}
+            'button': button,
+            'image_height': image_height,}

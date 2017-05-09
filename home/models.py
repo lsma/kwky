@@ -36,7 +36,7 @@ class Slide(models.Model):
 class Card(models.Model):
     # Main Info
     title = models.CharField(max_length=128, blank=True)
-    image = models.ImageField(help_text="Recomended 1750px by 675px", upload_to='home/', null=True, blank=True)
+    image = models.ImageField(upload_to='home/', null=True, blank=True)
     content = models.TextField(blank=True)
     button = models.URLField("Link", blank=True)
 
