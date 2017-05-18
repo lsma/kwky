@@ -24,7 +24,7 @@ class Slide(models.Model):
 
     def is_active(self):
         now = timezone.now()
-        return (self.begin <= now <= self.expire)
+        return ((self.begin if self.begin else MIN_TIME) <= now <= (self.expire if self.expire else MAX_TIME))
     is_active.admin_order_field = 'event_start'
     is_active.boolean = True
     is_active.short_description = 'Slide is live?'
