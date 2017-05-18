@@ -34,3 +34,8 @@ def render_card(card):
             'content': content,
             'button': button,
             'image_height': image_height,}
+
+
+@register.inclusion_tag('carousel.html')
+def render_carousel(slides):
+    return {'slides': slides}

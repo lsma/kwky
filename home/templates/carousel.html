@@ -1,0 +1,104 @@
+
+<div class="slideshow">
+    {% for slide in slides %}
+    <div class="slide" style="background-image: url({{ slide.image.url }});"><a class="fill-link" href="{{ slide.url }}"><span></span></a></div>
+    {% endfor %}
+
+    <style>
+    .slideshow {
+        width: 100%;
+        padding-bottom: 35.71%; /* 1750x625 */
+        position: relative;
+    }
+
+    .slide {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        animation: slide-fade 300ms;
+    }
+
+    .slideshow-controls {
+        text-align: center!important;
+        font-size: 32px;
+        color: #553b88;
+        padding: 0 10px;
+        line-height: 34px;
+    }
+
+    .slideshow-left {
+        float: left;
+        cursor: pointer;
+    }
+
+    .slideshow-right {
+        float: right;
+        cursor: pointer;
+    }
+
+    .slideshow-button {
+        width: 16px;
+        height: 16px;
+        background-color: transparent;
+        transition: background-color 200ms;
+        border: 2px solid #553b88;
+        border-radius: 50%;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .slideshow-button.active {
+        background-color: #553b88;
+    }
+
+    @keyframes slide-fade {
+        from {opacity: 0.0;}
+        to {opacity: 1.0;}
+    }
+    </style>
+</div>
+
+<div class="slideshow-controls" style="width:100%">
+    <div class="slideshow-left" onclick="shiftSlide(-1)">&#10094;</div>
+    <div class="slideshow-right" onclick="shiftSlide(1)">&#10095;</div>
+    {% for slide in slides %}
+    <span class="slideshow-button" onclick="pickSlide({{ forloop.counter }})"></span>
+    {% endfor %}
+</div>
+
+
+    <script>
+        var slideIndex = 1;
+        pickSlide(slideIndex);
+        var autoInterval = setInterval(function(){ showSlide(slideIndex += 1); }, 2000);
+
+        function pickSlide(n) {
+            slideIndex = n;
+            showSlide(slideIndex);
+            clearInterval(autoInterval);
+        }
+
+        function shiftSlide(n) {
+            showSlide(slideIndex += n);
+            clearInterval(autoInterval);
+        }
+
+        function showSlide(n) {
+            var i;
+            var slides = document.getElementsByClassName("slide");
+            var controls = document.getElementsByClassName("slideshow-button");
+            if (n > slides.length) {slideIndex = 1}
+            if (n < 1) {slideIndex = slides.length} ;
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                controls[i].className = controls[i].className.replace( 'active', '' );
+            }
+            slides[slideIndex-1].style.display = "block";
+            controls[slideIndex-1].classList ? controls[slideIndex-1].classList.add('active') : controls[slideIndex-1].className += ' active';
+        }
+    </script>

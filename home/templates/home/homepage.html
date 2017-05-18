@@ -5,8 +5,11 @@
 
 
 {% block content %}
-<div class="slideshow-container"></div>
+<div class="slideshow-container">
+    {% render_carousel slides %}
+</div>
 <div class="grid">
+
     {% for card in cards %}
     <div class="home-card">
         {% render_card card %}
