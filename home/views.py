@@ -11,7 +11,7 @@ MAX_TIME = datetime.datetime.max # (datetime.MAXYEAR, 12, calendar.monthrange(da
 def homepage(request):
     now = timezone.now()
 
-    slides = Slide.objects.none().union(
+    slides = Slide.objects.filter(expire__isnull=True, begin__isnull=True).union(
         # Slides with both a publish date and an expire date
         Slide.objects.filter(expire__isnull=False, begin__isnull=False).filter(expire__range=(now, MAX_TIME), begin__range=(MIN_TIME, now)),
 
