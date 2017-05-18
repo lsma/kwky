@@ -1,3 +1,8 @@
+/* carousel.js
+ * lsma
+ * JS to make the carousel go
+ */
+
 var slideIndex = 1;
 pickSlide(slideIndex);
 var autoInterval = setInterval(function(){ showSlide(slideIndex += 1); }, 2000);
@@ -26,3 +31,6 @@ function showSlide(n) {
     slides[slideIndex-1].style.display = "block";
     controls[slideIndex-1].classList ? controls[slideIndex-1].classList.add('active') : controls[slideIndex-1].className += ' active';
 }
+
+/* Dedicated to the Seven Swords */
+
