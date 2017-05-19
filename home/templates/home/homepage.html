@@ -1,8 +1,12 @@
 {% extends "site/base.html" %}
+{% load static from staticfiles %}
 {% load home %}
 
 {% block title %}Homepage{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static "home/carousel.css" %}">
+{% endblock %}
 
 {% block content %}
 <div class="slideshow-container">
@@ -16,7 +20,7 @@
     </div>
     {% endfor %}
     <div class="home-card owc-home-card">
-        <div id="one-week-challenge-image"></div>
+        <div id="one-week-challenge-image" style="background-image: url('{% static "home/EncounterJesus_2.png" %}');"></div>
         <a class="home-card-button" href="\one-week-challenge">I'm in!</a>
     </div>
     <div class="home-card donate-home-card">

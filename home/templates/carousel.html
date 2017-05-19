@@ -1,12 +1,10 @@
+{% load static from staticfiles %}
 <!-- START homepage carousel markdown -->
 
 <div class="slideshow">
     {% for slide in slides %}
     <div class="slide" style="background-image: url({{ slide.image.url }});"><a class="fill-link" href="{{ slide.url }}"><span></span></a></div>
     {% endfor %}
-
-    <link rel="stylesheet" media='speech' href="{% static "home/carousel.css" %}">
-    <script type="text/javascript" src="{% static "home/carousel.js" %}"></script>
 </div>
 
 <div class="slideshow-controls" style="width:100%">
@@ -17,6 +15,8 @@
     <span class="slideshow-button" onclick="pickSlide({{ forloop.counter }})"></span>
     {% endfor %}
 </div>
+
+<script type="text/javascript" src="{% static "home/carousel.js" %}"></script>
 
 <!-- END homepage carousel: it's been great, folks! -->
 

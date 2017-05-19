@@ -5,7 +5,7 @@
 
 var slideIndex = 1;
 pickSlide(slideIndex);
-var autoInterval = setInterval(function(){ showSlide(slideIndex += 1); }, 2000);
+var autoInterval = setInterval(function(){ showSlide(slideIndex += 1); }, 12000);
 
 function pickSlide(n) {
     slideIndex = n;
